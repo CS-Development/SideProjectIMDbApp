@@ -15,6 +15,7 @@
 		24FDD2DF26AC491E007CE4FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24FDD2DD26AC491E007CE4FD /* LaunchScreen.storyboard */; };
 		24FDD2EA26AC491F007CE4FD /* SideProjectIMDbAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FDD2E926AC491F007CE4FD /* SideProjectIMDbAppTests.swift */; };
 		24FDD2F526AC491F007CE4FD /* SideProjectIMDbAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FDD2F426AC491F007CE4FD /* SideProjectIMDbAppUITests.swift */; };
+		24FDD30526AC5F75007CE4FD /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FDD30426AC5F75007CE4FD /* APIManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		24FDD2F026AC491F007CE4FD /* SideProjectIMDbAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SideProjectIMDbAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		24FDD2F426AC491F007CE4FD /* SideProjectIMDbAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideProjectIMDbAppUITests.swift; sourceTree = "<group>"; };
 		24FDD2F626AC491F007CE4FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		24FDD30426AC5F75007CE4FD /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		24FDD2D126AC491D007CE4FD /* SideProjectIMDbApp */ = {
 			isa = PBXGroup;
 			children = (
+				24FDD30426AC5F75007CE4FD /* APIManager.swift */,
 				24FDD2D226AC491D007CE4FD /* AppDelegate.swift */,
 				24FDD2D426AC491D007CE4FD /* SceneDelegate.swift */,
 				24FDD2D626AC491D007CE4FD /* ViewController.swift */,
@@ -258,6 +261,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24FDD30526AC5F75007CE4FD /* APIManager.swift in Sources */,
 				24FDD2D726AC491D007CE4FD /* ViewController.swift in Sources */,
 				24FDD2D326AC491D007CE4FD /* AppDelegate.swift in Sources */,
 				24FDD2D526AC491D007CE4FD /* SceneDelegate.swift in Sources */,
