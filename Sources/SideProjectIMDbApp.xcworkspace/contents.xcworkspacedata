@@ -1,53 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
+   <Group
+      location = "container:"
+      name = "Modules">
+      <FileRef
+         location = "group:Modules/NetworkingService/NetworkingService.xcodeproj">
+      </FileRef>
+   </Group>
    <FileRef
       location = "group:App/SideProjectIMDbApp/SideProjectIMDbApp.xcodeproj">
    </FileRef>
-   <Group
-      location = "group:Modules"
-      name = "Modules">
-      <Group
-         location = "group:NetworkingService"
-         name = "NetworkingService">
-         <FileRef
-            location = "group:NetworkingService.xcodeproj">
-         </FileRef>
-         <Group
-            location = "group:NetworkingService"
-            name = "NetworkingService">
-            <FileRef
-               location = "group:URLSessionHTTPClient.swift">
-            </FileRef>
-            <FileRef
-               location = "group:NetworkingService.h">
-            </FileRef>
-            <FileRef
-               location = "group:NetworkingServiceError.swift">
-            </FileRef>
-            <FileRef
-               location = "group:DTO.swift">
-            </FileRef>
-            <FileRef
-               location = "group:HTTPClient.swift">
-            </FileRef>
-            <FileRef
-               location = "group:GenericDecoder.swift">
-            </FileRef>
-            <FileRef
-               location = "group:Info.plist">
-            </FileRef>
-         </Group>
-         <Group
-            location = "group:NetworkingServiceTests"
-            name = "NetworkingServiceTests">
-            <FileRef
-               location = "group:NetworkingServiceTests.swift">
-            </FileRef>
-            <FileRef
-               location = "group:Info.plist">
-            </FileRef>
-         </Group>
-      </Group>
-   </Group>
 </Workspace>
