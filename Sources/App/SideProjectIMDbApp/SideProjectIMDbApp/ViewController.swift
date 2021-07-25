@@ -24,7 +24,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        manager.refreshToken()
+        manager.getMostPopularMovies() { answer in
+            print(answer)
+        }
         
     }
 }

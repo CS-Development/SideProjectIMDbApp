@@ -31,8 +31,12 @@ class ConcreteAlbums: Generic<AlbumModel> {
 
 
 class IMDbManager {
-    var token: String!
-    var service: IMDbApiService!
+    var token: String = "INVALID_TOKEN"
+    var service: IMDbApiService
+    
+    init(service: IMDbApiService) {
+        self.service = service
+    }
     
     func refreshToken() {
         service.getApiToken(completion: { tokenResult in
@@ -47,6 +51,19 @@ class IMDbManager {
     
     func getToken() -> String {
         return token
+    }
+    
+    func getMostPopularMovies(completion: @escaping (MovieAnswerDTO)->Void ) {
+        service.getMostPopularMovies { result in
+            switch result {
+            case let .failure(error):
+                print(error)
+                break
+            case let .success(answer):
+                completion(answer)
+                break
+            }
+        }
     }
 }
 
@@ -89,6 +106,28 @@ class IMDbApiService {
         }
     }
     
+    //https://imdb8.p.rapidapi.com/title/get-most-popular-movies
+    public func getMostPopularMovies(completion: @escaping (Swift.Result<MovieAnswerDTO, ServiceError>)->Void) {
+        if let key = apiKey {
+            client.urlQueryParameters.add(value: "\(key)", forKey: "apiKey")
+        }
+        client.makeRequest(toURL: baseURL.appendingPathComponent("title/get-most-popular-movies"), withHttpMethod: .get) {  [weak self] result in
+            guard self != nil else { return }
+            
+            completion(GenericDecoder.decodeResult(result: result))
+        }
+    }
+}
+
+public struct MovieAnswerDTO: DTO {
+    
+    public var description: String {
+        return """
+        ------------
+
+        ------------
+        """
+    }
 }
 
 public struct AccessTokenDTO: DTO {
