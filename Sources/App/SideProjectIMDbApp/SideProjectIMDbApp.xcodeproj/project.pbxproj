@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2402008E26AD96540034A512 /* NetworkingService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2402008D26AD96540034A512 /* NetworkingService.framework */; };
 		2402008F26AD96540034A512 /* NetworkingService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2402008D26AD96540034A512 /* NetworkingService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2402009226ADA0DB0034A512 /* IMDbApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2402009126ADA0DB0034A512 /* IMDbApiService.swift */; };
 		24FDD2D326AC491D007CE4FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FDD2D226AC491D007CE4FD /* AppDelegate.swift */; };
 		24FDD2D526AC491D007CE4FD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FDD2D426AC491D007CE4FD /* SceneDelegate.swift */; };
 		24FDD2D726AC491D007CE4FD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FDD2D626AC491D007CE4FD /* ViewController.swift */; };
@@ -53,6 +54,7 @@
 
 /* Begin PBXFileReference section */
 		2402008D26AD96540034A512 /* NetworkingService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NetworkingService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2402009126ADA0DB0034A512 /* IMDbApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMDbApiService.swift; sourceTree = "<group>"; };
 		24FDD2CF26AC491D007CE4FD /* SideProjectIMDbApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SideProjectIMDbApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24FDD2D226AC491D007CE4FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24FDD2D426AC491D007CE4FD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				24FDD2DB26AC491E007CE4FD /* Assets.xcassets */,
 				24FDD2DD26AC491E007CE4FD /* LaunchScreen.storyboard */,
 				24FDD2E026AC491E007CE4FD /* Info.plist */,
+				2402009126ADA0DB0034A512 /* IMDbApiService.swift */,
 			);
 			path = SideProjectIMDbApp;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2402009226ADA0DB0034A512 /* IMDbApiService.swift in Sources */,
 				24FDD30526AC5F75007CE4FD /* APIManager.swift in Sources */,
 				24FDD2D726AC491D007CE4FD /* ViewController.swift in Sources */,
 				24FDD2D326AC491D007CE4FD /* AppDelegate.swift in Sources */,
