@@ -9,6 +9,26 @@ import Foundation
 import NetworkingService
 
 
+class TypeA {}
+
+class TypeB {}
+
+class Generic<T> {
+    func getItems() -> [T] {
+        // creating items of type T
+        // adding items to an array
+        return [T]()
+    }
+}
+
+class ConcreteTokens: Generic<AccessTokenDTO> {
+    
+}
+
+class ConcreteAlbums: Generic<AlbumModel> {
+    
+}
+
 
 class IMDbManager {
     var token: String!
@@ -38,6 +58,7 @@ class IMDbApiService {
     
     typealias ServiceError = NetworkingServiceError
     typealias TokenResult = Swift.Result<AccessTokenDTO, ServiceError>
+    typealias AlbumResult = Swift.Result<AlbumModel, ServiceError>
     
     public init(baseURL: URL, client: HTTPClient, apiKey: String? = nil) {
         self.baseURL = baseURL
@@ -57,6 +78,14 @@ class IMDbApiService {
                 guard self != nil else { return }
                 
                 completion(GenericDecoder.decodeResult(result: result))
+        }
+    }
+    
+    public func getAlbums(completion: @escaping (Swift.Result<AlbumModel, ServiceError>)->Void) {
+        client.makeRequest(toURL: baseURL.appendingPathComponent("getAlbums"), withHttpMethod: .get) {  [weak self] result in
+            guard self != nil else { return }
+            
+            completion(GenericDecoder.decodeResult(result: result))
         }
     }
     

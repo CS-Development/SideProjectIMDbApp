@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import NetworkingService
 
 //class BaseAPIManager {
 //    public func login() {}
@@ -130,7 +131,7 @@ extension APIManager {
     }
 }
 
-public struct AlbumModel: Decodable {
+public struct AlbumModel: DTO {
     
     public var href: String
 
