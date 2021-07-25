@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import NetworkingService
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -16,7 +17,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        
+        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+        window?.windowScene = windowScene
+        window?.makeKeyAndVisible()
+        
+        let apiKey = "API_KEY"
+        let client = URLSessionHTTPClient(session: URLSession.shared)
+        let service = IMDbApiService(baseURL: URL(string: "https://imdb8.p.rapidapi.com")!, client: client, apiKey: apiKey)
+        let manager = IMDbManager(service: service)
+        window?.rootViewController = ViewController(manager: manager)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
