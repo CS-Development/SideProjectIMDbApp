@@ -28,8 +28,8 @@ class SideProjectIMDbAppUITests: XCTestCase {
         let app = XCUIApplication()
         app.launch()
 
-        let fakeManager = FakeAPIManager.shared
-        let viewController = ViewController(manager: fakeManager)
+        //let fakeManager = FakeAPIManager.shared
+        //let viewController = ViewController(manager: fakeManager)
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
