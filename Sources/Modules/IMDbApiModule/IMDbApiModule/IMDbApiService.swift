@@ -8,7 +8,14 @@
 import Foundation
 import NetworkingService
 
-public class IMDbApiService {
+public protocol IMDbApiServiceProtocol {
+    typealias ServiceError = NetworkingServiceError
+    init(baseURL: URL, client: HTTPClient, apiKey: String)
+    func getMostPopularMovies(completion: @escaping (Swift.Result<MostPopularData, ServiceError>)->Void)
+    func getMostPopularTvs(completion: @escaping (Swift.Result<MostPopularData, ServiceError>)->Void)
+}
+
+public class IMDbApiService: IMDbApiServiceProtocol {
     
     private var baseURL: URL
     private var client: HTTPClient
@@ -16,7 +23,7 @@ public class IMDbApiService {
     
     public typealias ServiceError = NetworkingServiceError
     
-    public init(baseURL: URL, client: HTTPClient, apiKey: String) {
+    required public init(baseURL: URL, client: HTTPClient, apiKey: String) {
         self.baseURL = baseURL
         self.client = client
         self.apiKey = apiKey

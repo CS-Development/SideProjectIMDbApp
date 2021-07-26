@@ -25,10 +25,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let apiKey = "k_4olf5ls3"
         let client = URLSessionHTTPClient(session: URLSession.shared)
-        let service = IMDbApiService(baseURL: URL(string: "https://imdb-api.com")!, client: client, apiKey: apiKey)
-        //let manager = IMDbManager(service: service)
-        let fakeManager = IMDbManager(service: service)
-        window?.rootViewController = ViewController(manager: fakeManager)
+        let service: IMDbApiServiceProtocol  = IMDbApiService(baseURL: URL(string: "https://imdb-api.com")!, client: client, apiKey: apiKey)
+        let manager: IMDbManagerProtocol = IMDbManager(service: service)
+        window?.rootViewController = ViewController(manager: manager)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
