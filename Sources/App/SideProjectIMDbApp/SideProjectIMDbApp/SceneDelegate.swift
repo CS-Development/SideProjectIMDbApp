@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         window?.makeKeyAndVisible()
         
-        let apiKey = "API_KEY"
+        let apiKey = "k_4olf5ls3"
         let client = URLSessionHTTPClient(session: URLSession.shared)
         let service = IMDbApiService(baseURL: URL(string: "https://imdb-api.com")!, client: client, apiKey: apiKey)
         let manager = IMDbManager(service: service)

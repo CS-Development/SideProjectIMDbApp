@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .purple
-        manager.getMostPopularMovies() { answer in
+        manager.getMostPopularTvs() { answer in
             print(answer)
         }
         
