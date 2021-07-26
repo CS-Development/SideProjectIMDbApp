@@ -10,9 +10,9 @@ import IMDbApiModule
 
 class ViewController: UIViewController {
     
-    var manager: IMDbManager
+    var manager: IMDbManagerProtocol
     
-    init(manager: IMDbManager) {
+    init(manager: IMDbManagerProtocol) {
         self.manager = manager
         super.init(nibName: nil, bundle: nil)
     }

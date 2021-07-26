@@ -6,6 +6,8 @@
 //
 
 import XCTest
+import NetworkingService
+import IMDbApiModule
 @testable import SideProjectIMDbApp
 
 class SideProjectIMDbAppTests: XCTestCase {
@@ -21,6 +23,14 @@ class SideProjectIMDbAppTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        let apiKey = "FAKE_API_KEY"
+        let client = URLSessionHTTPClient(session: URLSession.shared)
+        let service = IMDbApiService(baseURL: URL(string: "https://imdb-api.com")!, client: client, apiKey: apiKey)
+        //let manager = IMDbManager(service: service)
+        let fakeManager = FakeIMDbManager(service: service)
+        let viewController = ViewController(manager: fakeManager)
+        viewController.viewDidLoad()
     }
 
     func testPerformanceExample() throws {

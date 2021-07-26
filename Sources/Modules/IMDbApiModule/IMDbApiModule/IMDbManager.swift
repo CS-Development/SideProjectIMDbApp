@@ -7,10 +7,16 @@
 
 import Foundation
 
-public class IMDbManager {
+public protocol IMDbManagerProtocol {
+    init(service: IMDbApiService)
+    func getMostPopularMovies(completion: @escaping (MostPopularData)->Void )
+    func getMostPopularTvs(completion: @escaping (MostPopularData)->Void )
+}
+
+public class IMDbManager: IMDbManagerProtocol {
     var service: IMDbApiService
     
-    public init(service: IMDbApiService) {
+    required public init(service: IMDbApiService) {
         self.service = service
     }
     
