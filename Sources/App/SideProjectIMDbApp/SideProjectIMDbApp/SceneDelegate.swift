@@ -7,11 +7,11 @@
 
 import UIKit
 import NetworkingService
+import IMDbApiModule
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -25,8 +25,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let apiKey = "k_4olf5ls3"
         let client = URLSessionHTTPClient(session: URLSession.shared)
-        let service = IMDbApiService(baseURL: URL(string: "https://imdb-api.com")!, client: client, apiKey: apiKey)
-        let manager = IMDbManager(service: service)
+        let service: IMDbApiServiceProtocol  = IMDbApiService(baseURL: URL(string: "https://imdb-api.com")!, client: client, apiKey: apiKey)
+        let manager: IMDbManagerProtocol = IMDbManager(service: service)
         window?.rootViewController = ViewController(manager: manager)
     }
 

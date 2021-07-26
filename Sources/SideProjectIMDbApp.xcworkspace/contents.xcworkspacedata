@@ -5,6 +5,9 @@
       location = "container:"
       name = "Modules">
       <FileRef
+         location = "group:Modules/IMDbApiModule/IMDbApiModule.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:Modules/NetworkingService/NetworkingService.xcodeproj">
       </FileRef>
    </Group>
