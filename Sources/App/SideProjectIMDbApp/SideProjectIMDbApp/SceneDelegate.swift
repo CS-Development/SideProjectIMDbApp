@@ -7,6 +7,7 @@
 
 import UIKit
 import NetworkingService
+import IMDbApiModule
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 

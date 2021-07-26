@@ -8,47 +8,13 @@
 import Foundation
 import NetworkingService
 
-class IMDbManager {
-    var service: IMDbApiService
-    
-    init(service: IMDbApiService) {
-        self.service = service
-    }
-    
-    func getMostPopularMovies(completion: @escaping (MostPopularData)->Void ) {
-        service.getMostPopularMovies { result in
-            switch result {
-            case let .failure(error):
-                print(error)
-                break
-            case let .success(answer):
-                completion(answer)
-                break
-            }
-        }
-    }
-    
-    func getMostPopularTvs(completion: @escaping (MostPopularData)->Void ) {
-        service.getMostPopularTvs { result in
-            switch result {
-            case let .failure(error):
-                print(error)
-                break
-            case let .success(answer):
-                completion(answer)
-                break
-            }
-        }
-    }
-}
-
-class IMDbApiService {
+public class IMDbApiService {
     
     private var baseURL: URL
     private var client: HTTPClient
     private var apiKey: String
     
-    typealias ServiceError = NetworkingServiceError
+    public typealias ServiceError = NetworkingServiceError
     
     public init(baseURL: URL, client: HTTPClient, apiKey: String) {
         self.baseURL = baseURL
@@ -76,71 +42,4 @@ class IMDbApiService {
             completion(GenericDecoder.decodeResult(result: result))
         }
     }
-}
-
-public struct MostPopularData: DTO
-{
-    public var items: [MostPopularDataDetail]
-
-    public var errorMessage: String
-    
-    public var description: String {
-        return """
-        ------------
-        items = \(items)
-        errorMessage = \(errorMessage)
-        ------------
-        """
-    }
-}
-
-public struct MostPopularDataDetail: DTO
-{
-    public var id:                       String
-    public var rank:                     String
-    public var rankUpDown:               String
-    public var title:                    String
-    public var fullTitle:                String
-    public var year:                     String
-    public var image:                    String
-    public var crew:                     String
-    public var imDbRating:               String
-    public var imDbRatingCount:          String
-    
-    public var description: String {
-        return """
-        ------------
-        id = \(id)
-        rank = \(rank)
-        rankUpDown = \(rankUpDown)
-        title = \(title)
-        fullTitle = \(fullTitle)
-        year = \(year)
-        image = \(image)
-        crew = \(crew)
-        imDbRating = \(imDbRating)
-        imDbRatingCount = \(imDbRatingCount)
-        ------------
-        """
-    }
-}
-
-
-
-
-
-extension String {
-
-    func fromBase64() -> String? {
-        guard let data = Data(base64Encoded: self) else {
-            return nil
-        }
-
-        return String(data: data, encoding: .utf8)
-    }
-
-    func toBase64() -> String {
-        return Data(self.utf8).base64EncodedString()
-    }
-
 }

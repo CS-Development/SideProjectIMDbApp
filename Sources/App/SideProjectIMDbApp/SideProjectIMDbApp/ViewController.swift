@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import IMDbApiModule
 
 class ViewController: UIViewController {
     
