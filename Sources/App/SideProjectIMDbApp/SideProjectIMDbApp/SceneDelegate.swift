@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let apiKey = "API_KEY"
         let client = URLSessionHTTPClient(session: URLSession.shared)
-        let service = IMDbApiService(baseURL: URL(string: "https://imdb8.p.rapidapi.com")!, client: client, apiKey: apiKey)
+        let service = IMDbApiService(baseURL: URL(string: "https://imdb-api.com")!, client: client, apiKey: apiKey)
         let manager = IMDbManager(service: service)
         window?.rootViewController = ViewController(manager: manager)
     }
