@@ -11,9 +11,24 @@ public protocol IMDbManagerProtocol {
     init(service: IMDbApiServiceProtocol)
     func getMostPopularMovies(completion: @escaping (MostPopularData)->Void )
     func getMostPopularTvs(completion: @escaping (MostPopularData)->Void )
+    func getBoxOffice(completion: @escaping (BoxOfficeWeekendData)->Void)
 }
 
 public class IMDbManager: IMDbManagerProtocol {
+    
+    public func getBoxOffice(completion: @escaping (BoxOfficeWeekendData) -> Void) {
+        service.getBoxOffice { result in
+            switch result {
+            case let .failure(error):
+                print(error)
+                break
+            case let .success(answer):
+                completion(answer)
+                break
+            }
+        }
+    }
+    
     var service: IMDbApiServiceProtocol
     
     required public init(service: IMDbApiServiceProtocol) {
