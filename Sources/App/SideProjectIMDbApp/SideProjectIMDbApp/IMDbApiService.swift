@@ -27,6 +27,19 @@ class IMDbManager {
             }
         }
     }
+    
+    func getMostPopularTvs(completion: @escaping (MostPopularData)->Void ) {
+        service.getMostPopularTvs { result in
+            switch result {
+            case let .failure(error):
+                print(error)
+                break
+            case let .success(answer):
+                completion(answer)
+                break
+            }
+        }
+    }
 }
 
 class IMDbApiService {
@@ -47,6 +60,16 @@ class IMDbApiService {
     //https://imdb-api.com/en/API/MostPopularMovies/k_12345678
     public func getMostPopularMovies(completion: @escaping (Swift.Result<MostPopularData, ServiceError>)->Void) {
         let url = baseURL.appendingPathComponent("API/MostPopularMovies").appendingPathComponent(apiKey)
+        client.makeRequest(toURL: url, withHttpMethod: .get) {  [weak self] result in
+            guard self != nil else { return }
+            
+            completion(GenericDecoder.decodeResult(result: result))
+        }
+    }
+    
+    //https://imdb-api.com/en/API/MostPopularTVs/k_12345678
+    public func getMostPopularTvs(completion: @escaping (Swift.Result<MostPopularData, ServiceError>)->Void) {
+        let url = baseURL.appendingPathComponent("API/MostPopularTVs").appendingPathComponent(apiKey)
         client.makeRequest(toURL: url, withHttpMethod: .get) {  [weak self] result in
             guard self != nil else { return }
             
