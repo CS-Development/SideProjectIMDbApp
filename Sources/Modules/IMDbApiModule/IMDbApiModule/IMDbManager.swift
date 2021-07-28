@@ -12,6 +12,7 @@ public protocol IMDbManagerProtocol {
     func getMostPopularMovies(completion: @escaping (MostPopularData)->Void )
     func getMostPopularTvs(completion: @escaping (MostPopularData)->Void )
     func getBoxOffice(completion: @escaping (BoxOfficeWeekendData)->Void)
+    func getBoxOfficeAllTime(completion: @escaping (BoxOfficeAllTimeData)->Void)
 }
 
 public class IMDbManager: IMDbManagerProtocol {
@@ -59,5 +60,19 @@ public class IMDbManager: IMDbManagerProtocol {
                 break
             }
         }
+    }
+    
+    public func getBoxOfficeAllTime(completion: @escaping (BoxOfficeAllTimeData)->Void ) {
+        service.getBoxOfficeAllTime { (result) in
+            switch result {
+            case let .failure(error):
+                print(error)
+                break
+            case let .success(answer):
+                completion(answer)
+                break
+            }
+        }
+        
     }
 }

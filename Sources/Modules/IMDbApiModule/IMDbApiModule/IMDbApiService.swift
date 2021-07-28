@@ -14,6 +14,7 @@ public protocol IMDbApiServiceProtocol {
     func getMostPopularMovies(completion: @escaping (Swift.Result<MostPopularData, ServiceError>)->Void)
     func getMostPopularTvs(completion: @escaping (Swift.Result<MostPopularData, ServiceError>)->Void)
     func getBoxOffice(completion: @escaping (Swift.Result<BoxOfficeWeekendData, ServiceError>)->Void)
+    func getBoxOfficeAllTime(completion: @escaping (Swift.Result<BoxOfficeAllTimeData, ServiceError>)->Void)
 }
 
 public class IMDbApiService: IMDbApiServiceProtocol {
@@ -54,6 +55,16 @@ public class IMDbApiService: IMDbApiServiceProtocol {
     //https://imdb-api.com/en/API/BoxOffice/k_12345678
     public func getBoxOffice(completion: @escaping (Swift.Result<BoxOfficeWeekendData, ServiceError>)->Void) {
         let url = baseURL.appendingPathComponent("API/BoxOffice").appendingPathComponent(apiKey)
+        client.makeRequest(toURL: url, withHttpMethod: .get) {  [weak self] result in
+            guard self != nil else { return }
+            
+            completion(GenericDecoder.decodeResult(result: result))
+        }
+    }
+    
+    // https://imdb-api.com/en/API/BoxOfficeAllTime/k_12345678
+    public func getBoxOfficeAllTime(completion: @escaping (Swift.Result<BoxOfficeAllTimeData, ServiceError>)->Void) {
+        let url = baseURL.appendingPathComponent("API/BoxOfficeAllTime").appendingPathComponent(apiKey)
         client.makeRequest(toURL: url, withHttpMethod: .get) {  [weak self] result in
             guard self != nil else { return }
             
