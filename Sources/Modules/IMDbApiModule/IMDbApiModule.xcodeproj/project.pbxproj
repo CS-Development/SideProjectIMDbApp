@@ -14,6 +14,10 @@
 		2422BD5D26AF3368001417F4 /* NetworkingService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2422BD5B26AF3368001417F4 /* NetworkingService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2422BD6026AF3385001417F4 /* MostPopularDataDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2422BD5F26AF3385001417F4 /* MostPopularDataDetail.swift */; };
 		2422BD6226AF33DE001417F4 /* IMDbManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2422BD6126AF33DE001417F4 /* IMDbManager.swift */; };
+		527FB96326AF423800DF56C3 /* BoxOfficeWeekendData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527FB96226AF423800DF56C3 /* BoxOfficeWeekendData.swift */; };
+		527FB96526AF434800DF56C3 /* BoxOfficeWeekendDataDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527FB96426AF434800DF56C3 /* BoxOfficeWeekendDataDetail.swift */; };
+		529355C926B18AB20052EB24 /* BoxOfficeAllTimeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529355C826B18AB20052EB24 /* BoxOfficeAllTimeData.swift */; };
+		529355CB26B18DE90052EB24 /* BoxOfficeAllTimeDataDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529355CA26B18DE90052EB24 /* BoxOfficeAllTimeDataDetail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -39,6 +43,10 @@
 		2422BD5B26AF3368001417F4 /* NetworkingService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NetworkingService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2422BD5F26AF3385001417F4 /* MostPopularDataDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostPopularDataDetail.swift; sourceTree = "<group>"; };
 		2422BD6126AF33DE001417F4 /* IMDbManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMDbManager.swift; sourceTree = "<group>"; };
+		527FB96226AF423800DF56C3 /* BoxOfficeWeekendData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeWeekendData.swift; sourceTree = "<group>"; };
+		527FB96426AF434800DF56C3 /* BoxOfficeWeekendDataDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeWeekendDataDetail.swift; sourceTree = "<group>"; };
+		529355C826B18AB20052EB24 /* BoxOfficeAllTimeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeAllTimeData.swift; sourceTree = "<group>"; };
+		529355CA26B18DE90052EB24 /* BoxOfficeAllTimeDataDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeAllTimeDataDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +95,10 @@
 			children = (
 				2422BD5826AF32F7001417F4 /* MostPopularData.swift */,
 				2422BD5F26AF3385001417F4 /* MostPopularDataDetail.swift */,
+				527FB96226AF423800DF56C3 /* BoxOfficeWeekendData.swift */,
+				527FB96426AF434800DF56C3 /* BoxOfficeWeekendDataDetail.swift */,
+				529355C826B18AB20052EB24 /* BoxOfficeAllTimeData.swift */,
+				529355CA26B18DE90052EB24 /* BoxOfficeAllTimeDataDetail.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -178,7 +190,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				527FB96326AF423800DF56C3 /* BoxOfficeWeekendData.swift in Sources */,
+				529355C926B18AB20052EB24 /* BoxOfficeAllTimeData.swift in Sources */,
+				529355CB26B18DE90052EB24 /* BoxOfficeAllTimeDataDetail.swift in Sources */,
 				2422BD5926AF32F7001417F4 /* MostPopularData.swift in Sources */,
+				527FB96526AF434800DF56C3 /* BoxOfficeWeekendDataDetail.swift in Sources */,
 				2422BD6026AF3385001417F4 /* MostPopularDataDetail.swift in Sources */,
 				2422BD5626AF3205001417F4 /* IMDbApiService.swift in Sources */,
 				2422BD6226AF33DE001417F4 /* IMDbManager.swift in Sources */,
