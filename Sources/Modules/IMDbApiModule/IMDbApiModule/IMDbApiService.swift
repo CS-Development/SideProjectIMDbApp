@@ -75,10 +75,11 @@ public class IMDbApiService: IMDbApiServiceProtocol {
     
     //https://imdb-api.com/en/API/ComingSoon/k_12345678
     public func getNewMovies(completion: @escaping (Result<NewMovieData, ServiceError>) -> Void) {
-        let url = baseURL.appendingPathComponent("API/BoxOfficeAllTime").appendingPathComponent(apiKey)
+        let url = baseURL.appendingPathComponent("API/ComingSoon").appendingPathComponent(apiKey)
         client.makeRequest(toURL: url, withHttpMethod: .get) { [weak self] result in
             guard self != nil else {return}
             completion(GenericDecoder.decodeResult(result: result))
         }
     }
+    
 }

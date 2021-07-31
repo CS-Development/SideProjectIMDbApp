@@ -20,7 +20,4 @@ public struct BoxOfficeAllTimeData: DTO {
         """
     
     }
-    
-    
-    
 }

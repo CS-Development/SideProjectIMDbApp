@@ -10,7 +10,7 @@ import NetworkingService
 public struct NewMovieDataDetail: DTO {
     public var id:                                        String
     public var title:                                     String
-    public var fulltitle:                                 String
+    public var fullTitle:                                 String
     public var year:                                      String
     public var releaseState:                              String
     public var image:                                     String
@@ -18,35 +18,35 @@ public struct NewMovieDataDetail: DTO {
     public var runtimeStr:                                String
     public var plot:                                      String
     public var contentRating:                             String
-    public var iMDbRatingCount:                           String
+    public var imDbRating:                                String
+    public var imDbRatingCount:                           String
     public var metacriticRating:                          String
     public var genres:                                    String
-    public var GenreList:                                 [String]
+    public var genreList:                                 [Dictionary<String, String>]
     public var directors:                                 String
-    public var DirectorList:                              [String]
-    public var stars:                                     String 
-    public var StarList:                                  [String]
+    public var directorList:                              [Dictionary<String, String>]
+    public var stars:                                     String
+    public var starList:                                  [Dictionary<String, String>]
     public var description: String {
         return """
         ------------
         id = \(id)
         title = \(title)
-        fulltitle = \(fulltitle)
+        fulltitle = \(fullTitle)
         year = \(year)
         releaseState = \(releaseState)
         runtimeMins = \(runtimeMins)
         runtimeStr = \(runtimeStr)
         plot = \(plot)
         contentRating = \(contentRating)
-        iMDbRatingCount = \(iMDbRatingCount)
+        iMDbRatingCount = \(imDbRatingCount)
         metacriticRating = \(metacriticRating)
         genres = \(genres)
-        GenreList = \(GenreList)
+        GenreList = \(genreList)
         directors = \(directors)
-        DirectorList = \(DirectorList)
+        directorList = \(directorList)
         stars = \(stars)
-        DirectorList = \(StarList)
-        stars = \(StarList)
+        DirectorList = \(starList)
         ------------
         """
     }
