@@ -46,7 +46,7 @@ public struct NewMovieDataDetail: DTO {
         directors = \(directors)
         directorList = \(directorList)
         stars = \(stars)
-        DirectorList = \(starList)
+        starList = \(starList)
         ------------
         """
     }
