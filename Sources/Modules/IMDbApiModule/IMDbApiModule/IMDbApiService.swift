@@ -15,10 +15,11 @@ public protocol IMDbApiServiceProtocol {
     func getMostPopularTvs(completion: @escaping (Swift.Result<MostPopularData, ServiceError>)->Void)
     func getBoxOffice(completion: @escaping (Swift.Result<BoxOfficeWeekendData, ServiceError>)->Void)
     func getBoxOfficeAllTime(completion: @escaping (Swift.Result<BoxOfficeAllTimeData, ServiceError>)->Void)
+    func getNewMovies(completion: @escaping (Swift.Result<NewMovieData, ServiceError>)-> Void)
 }
 
 public class IMDbApiService: IMDbApiServiceProtocol {
-    
+ 
     private var baseURL: URL
     private var client: HTTPClient
     private var apiKey: String
@@ -71,4 +72,14 @@ public class IMDbApiService: IMDbApiServiceProtocol {
             completion(GenericDecoder.decodeResult(result: result))
         }
     }
+    
+    //https://imdb-api.com/en/API/ComingSoon/k_12345678
+    public func getNewMovies(completion: @escaping (Result<NewMovieData, ServiceError>) -> Void) {
+        let url = baseURL.appendingPathComponent("API/ComingSoon").appendingPathComponent(apiKey)
+        client.makeRequest(toURL: url, withHttpMethod: .get) { [weak self] result in
+            guard self != nil else {return}
+            completion(GenericDecoder.decodeResult(result: result))
+        }
+    }
+    
 }
