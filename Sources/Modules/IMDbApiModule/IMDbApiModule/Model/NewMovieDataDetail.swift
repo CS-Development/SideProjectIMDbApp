@@ -22,11 +22,11 @@ public struct NewMovieDataDetail: DTO {
     public var imDbRatingCount:                           String
     public var metacriticRating:                          String
     public var genres:                                    String
-    public var genreList:                                 [Dictionary<String, String>]
+    public var genreList:                                 [GenreDTO]
     public var directors:                                 String
-    public var directorList:                              [Dictionary<String, String>]
+    public var directorList:                              [DirectorDTO]
     public var stars:                                     String
-    public var starList:                                  [Dictionary<String, String>]
+    public var starList:                                  [StarDTO]
     public var description: String {
         return """
         ------------
