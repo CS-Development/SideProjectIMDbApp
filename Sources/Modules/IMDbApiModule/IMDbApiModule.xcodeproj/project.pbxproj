@@ -14,6 +14,8 @@
 		2422BD5D26AF3368001417F4 /* NetworkingService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2422BD5B26AF3368001417F4 /* NetworkingService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2422BD6026AF3385001417F4 /* MostPopularDataDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2422BD5F26AF3385001417F4 /* MostPopularDataDetail.swift */; };
 		2422BD6226AF33DE001417F4 /* IMDbManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2422BD6126AF33DE001417F4 /* IMDbManager.swift */; };
+		521BA59026BD771C00CF3149 /* SearchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521BA58F26BD771C00CF3149 /* SearchData.swift */; };
+		521BA59226BD78B500CF3149 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521BA59126BD78B500CF3149 /* SearchResult.swift */; };
 		527FB96326AF423800DF56C3 /* BoxOfficeWeekendData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527FB96226AF423800DF56C3 /* BoxOfficeWeekendData.swift */; };
 		527FB96526AF434800DF56C3 /* BoxOfficeWeekendDataDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527FB96426AF434800DF56C3 /* BoxOfficeWeekendDataDetail.swift */; };
 		528AB84F26B8057C00635127 /* GenreDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528AB84E26B8057C00635127 /* GenreDTO.swift */; };
@@ -48,6 +50,8 @@
 		2422BD5B26AF3368001417F4 /* NetworkingService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NetworkingService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2422BD5F26AF3385001417F4 /* MostPopularDataDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostPopularDataDetail.swift; sourceTree = "<group>"; };
 		2422BD6126AF33DE001417F4 /* IMDbManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMDbManager.swift; sourceTree = "<group>"; };
+		521BA58F26BD771C00CF3149 /* SearchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchData.swift; sourceTree = "<group>"; };
+		521BA59126BD78B500CF3149 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		527FB96226AF423800DF56C3 /* BoxOfficeWeekendData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeWeekendData.swift; sourceTree = "<group>"; };
 		527FB96426AF434800DF56C3 /* BoxOfficeWeekendDataDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeWeekendDataDetail.swift; sourceTree = "<group>"; };
 		528AB84E26B8057C00635127 /* GenreDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreDTO.swift; sourceTree = "<group>"; };
@@ -114,6 +118,8 @@
 				528AB84E26B8057C00635127 /* GenreDTO.swift */,
 				528AB85426B806B700635127 /* DirectorDTO.swift */,
 				528AB85626B806F400635127 /* StarDTO.swift */,
+				521BA58F26BD771C00CF3149 /* SearchData.swift */,
+				521BA59126BD78B500CF3149 /* SearchResult.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -212,8 +218,10 @@
 				529355C926B18AB20052EB24 /* BoxOfficeAllTimeData.swift in Sources */,
 				529355CB26B18DE90052EB24 /* BoxOfficeAllTimeDataDetail.swift in Sources */,
 				2422BD5926AF32F7001417F4 /* MostPopularData.swift in Sources */,
+				521BA59226BD78B500CF3149 /* SearchResult.swift in Sources */,
 				527FB96526AF434800DF56C3 /* BoxOfficeWeekendDataDetail.swift in Sources */,
 				2422BD6026AF3385001417F4 /* MostPopularDataDetail.swift in Sources */,
+				521BA59026BD771C00CF3149 /* SearchData.swift in Sources */,
 				2422BD5626AF3205001417F4 /* IMDbApiService.swift in Sources */,
 				528AB85726B806F400635127 /* StarDTO.swift in Sources */,
 				52A1E4CF26B5740A00F73B7C /* NewMovieData.swift in Sources */,

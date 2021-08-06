@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .purple
-        manager.getNewMovies() { answer in
+        manager.searchMovie(title: "Inception 2010") { answer in
             print(answer)
         }
         

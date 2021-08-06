@@ -14,12 +14,10 @@ public protocol IMDbManagerProtocol {
     func getBoxOffice(completion: @escaping (BoxOfficeWeekendData)->Void)
     func getBoxOfficeAllTime(completion: @escaping (BoxOfficeAllTimeData)->Void)
     func getNewMovies(completion: @escaping (NewMovieData)->Void)
+    func searchMovie(title: String ,completion: @escaping (SearchData)-> Void)
 }
 
 public class IMDbManager: IMDbManagerProtocol {
-    
-    
-    
     public func getBoxOffice(completion: @escaping (BoxOfficeWeekendData) -> Void) {
         service.getBoxOffice { result in
             switch result {
@@ -90,6 +88,21 @@ public class IMDbManager: IMDbManagerProtocol {
             }
         }
     }
+    
+    public func searchMovie(title: String, completion: @escaping (SearchData) -> Void) {
+        service.searchMovie(title: title) { (result) in
+            switch result {
+            case let .failure(error):
+                print(error)
+                break
+            case let .success(answer):
+                completion(answer)
+                break
+            }
+        }
+    }
+    
+    
     
     
 }
