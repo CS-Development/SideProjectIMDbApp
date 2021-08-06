@@ -15,3 +15,4 @@ extension Array: DTO where Element: DTO
 {
     
 }
+
