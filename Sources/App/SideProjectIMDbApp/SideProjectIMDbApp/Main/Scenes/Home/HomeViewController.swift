@@ -8,7 +8,7 @@
 import UIKit
 import IMDbApiModule
 
-class ViewController: UIViewController {
+class HomeViewController: UIViewController {
     
     var manager: IMDbManagerProtocol
     
