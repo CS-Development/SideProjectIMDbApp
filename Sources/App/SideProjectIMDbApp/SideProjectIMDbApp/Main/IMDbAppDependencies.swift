@@ -56,9 +56,7 @@ class IMDbAppDependencies {
 
     }
     
-    private func makeHomeViewController(manager: IMDbManagerProtocol) -> UIViewController {
-        return HomeViewController(manager: manager)
-    }
+    // MARK: - Tab Bar Controller
     
     private func makeMainTabBarController(manager: IMDbManagerProtocol) -> UIViewController {
         
@@ -71,11 +69,37 @@ class IMDbAppDependencies {
         return tabController
     }
     
-    private func makeSearchViewController(manager: IMDbManagerProtocol) -> UIViewController {
-        return SearchViewController(manager: manager)
+    // MARK: - Home Controller
+    
+    private func makeHomeViewController(manager: IMDbManagerProtocol) -> UIViewController {
+        let viewController = HomeViewController(manager: manager)
+        viewController.title = "Home"
+        let navigationController = UINavigationController(rootViewController: viewController)
+        navigationController.title = "Home"
+        navigationController.tabBarItem.image = UIImage(systemName: "house")
+        return navigationController
     }
     
+    // MARK: - Search Controller
+    
+    private func makeSearchViewController(manager: IMDbManagerProtocol) -> UIViewController {
+        let viewController = SearchViewController(manager: manager)
+        viewController.title = "Search"
+        let navigationController = UINavigationController(rootViewController: viewController)
+        navigationController.title = "Search"
+        navigationController.tabBarItem.image = UIImage(systemName: "magnifyingglass")
+        return navigationController
+    }
+    
+    // MARK: - Profile Controller
+    
     private func makeProfileViewController(manager: IMDbManagerProtocol) -> UIViewController {
+        let viewController = ProfileViewController(manager: manager)
+        viewController.title = "Profile"
+        let navigationController = UINavigationController(rootViewController: viewController)
+        navigationController.title = "Profile"
+        navigationController.tabBarItem.image = UIImage(systemName: "contacts")
+        return navigationController
         return ProfileViewController(manager: manager)
     }
 }
