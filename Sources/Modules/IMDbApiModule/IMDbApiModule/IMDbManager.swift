@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import NetworkingService
 
 public protocol IMDbManagerProtocol {
     init(service: IMDbApiServiceProtocol)
-    func getMostPopularMovies(completion: @escaping (MostPopularData)->Void )
+    func getMostPopularMovies(completion: @escaping (Result<MostPopularData, NetworkingServiceError>)->Void )
     func getMostPopularTvs(completion: @escaping (MostPopularData)->Void )
     func getBoxOffice(completion: @escaping (BoxOfficeWeekendData)->Void)
     func getBoxOfficeAllTime(completion: @escaping (BoxOfficeAllTimeData)->Void)
@@ -18,6 +19,7 @@ public protocol IMDbManagerProtocol {
 }
 
 public class IMDbManager: IMDbManagerProtocol {
+    
     public func getBoxOffice(completion: @escaping (BoxOfficeWeekendData) -> Void) {
         service.getBoxOffice { result in
             switch result {
@@ -37,14 +39,14 @@ public class IMDbManager: IMDbManagerProtocol {
         self.service = service
     }
     
-    public func getMostPopularMovies(completion: @escaping (MostPopularData)->Void ) {
+    public func getMostPopularMovies(completion: @escaping (Result<MostPopularData, NetworkingServiceError>) -> Void) {
         service.getMostPopularMovies { result in
             switch result {
-            case let .failure(error):
+            case .failure(let error):
                 print(error)
                 break
-            case let .success(answer):
-                completion(answer)
+            case .success(_):
+                completion(result)
                 break
             }
         }

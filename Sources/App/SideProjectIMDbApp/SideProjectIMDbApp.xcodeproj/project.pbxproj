@@ -11,6 +11,9 @@
 		2402008F26AD96540034A512 /* NetworkingService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2402008D26AD96540034A512 /* NetworkingService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2408F65426CAD67B00791DEF /* IMDbAppDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2408F65326CAD67B00791DEF /* IMDbAppDependencies.swift */; };
 		2408F65826CADBB700791DEF /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2408F65726CADBB700791DEF /* MainTabBarController.swift */; };
+		2408F65D26CAE4EA00791DEF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2408F65C26CAE4EA00791DEF /* LoginViewController.swift */; };
+		2408F65F26CAE4FA00791DEF /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2408F65E26CAE4FA00791DEF /* SearchViewController.swift */; };
+		2408F66126CAE51600791DEF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2408F66026CAE51600791DEF /* ProfileViewController.swift */; };
 		2422BD6426AF34AF001417F4 /* IMDbApiModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2422BD6326AF34AF001417F4 /* IMDbApiModule.framework */; };
 		2422BD6526AF34AF001417F4 /* IMDbApiModule.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2422BD6326AF34AF001417F4 /* IMDbApiModule.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2422BD6726AF3921001417F4 /* FakeIMDbManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2422BD6626AF3921001417F4 /* FakeIMDbManager.swift */; };
@@ -59,6 +62,9 @@
 		2402008D26AD96540034A512 /* NetworkingService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NetworkingService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2408F65326CAD67B00791DEF /* IMDbAppDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMDbAppDependencies.swift; sourceTree = "<group>"; };
 		2408F65726CADBB700791DEF /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		2408F65C26CAE4EA00791DEF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		2408F65E26CAE4FA00791DEF /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		2408F66026CAE51600791DEF /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		2422BD6326AF34AF001417F4 /* IMDbApiModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = IMDbApiModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2422BD6626AF3921001417F4 /* FakeIMDbManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeIMDbManager.swift; sourceTree = "<group>"; };
 		24FDD2CF26AC491D007CE4FD /* SideProjectIMDbApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SideProjectIMDbApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,7 +132,10 @@
 		2408F64F26CAD5C100791DEF /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				2408F65926CAE4AE00791DEF /* Login */,
 				2408F65026CAD5D600791DEF /* Home */,
+				2408F65A26CAE4B600791DEF /* Search */,
+				2408F65B26CAE4CD00791DEF /* Profile */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -170,6 +179,30 @@
 			children = (
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		2408F65926CAE4AE00791DEF /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				2408F65C26CAE4EA00791DEF /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		2408F65A26CAE4B600791DEF /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				2408F65E26CAE4FA00791DEF /* SearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		2408F65B26CAE4CD00791DEF /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				2408F66026CAE51600791DEF /* ProfileViewController.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		24FDD2C626AC491D007CE4FD = {
@@ -353,10 +386,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2408F65D26CAE4EA00791DEF /* LoginViewController.swift in Sources */,
 				2408F65426CAD67B00791DEF /* IMDbAppDependencies.swift in Sources */,
 				24FDD2D726AC491D007CE4FD /* HomeViewController.swift in Sources */,
+				2408F65F26CAE4FA00791DEF /* SearchViewController.swift in Sources */,
 				2408F65826CADBB700791DEF /* MainTabBarController.swift in Sources */,
 				24FDD2D326AC491D007CE4FD /* AppDelegate.swift in Sources */,
+				2408F66126CAE51600791DEF /* ProfileViewController.swift in Sources */,
 				24FDD2D526AC491D007CE4FD /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

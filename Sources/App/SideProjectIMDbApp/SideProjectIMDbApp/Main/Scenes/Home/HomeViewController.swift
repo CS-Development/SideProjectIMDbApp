@@ -24,9 +24,19 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .purple
-        manager.searchMovie(title: "Inception 2010") { answer in
-            print(answer)
+        
+        manager.getMostPopularMovies { [weak self] result in
+            switch result {
+            case .success(let movies):
+                print(movies)
+                break
+            case .failure(let error):
+                print("error")
+            }
         }
+    }
+    
+    func reloadData() {
         
     }
 }
