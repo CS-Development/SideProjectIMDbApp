@@ -29,7 +29,7 @@ class SideProjectIMDbAppTests: XCTestCase {
         let service = IMDbApiService(baseURL: URL(string: "https://imdb-api.com")!, client: client, apiKey: apiKey)
         //let manager = IMDbManager(service: service)
         let fakeManager = FakeIMDbManager(service: service)
-        let viewController = ViewController(manager: fakeManager)
+        let viewController = HomeViewController(manager: fakeManager)
         viewController.viewDidLoad()
     }
 

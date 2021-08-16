@@ -11,11 +11,15 @@ import NetworkingService
 public protocol IMDbApiServiceProtocol {
     typealias ServiceError = NetworkingServiceError
     init(baseURL: URL, client: HTTPClient, apiKey: String)
+    
+    // MARK: - Browse
     func getMostPopularMovies(completion: @escaping (Swift.Result<MostPopularData, ServiceError>)->Void)
     func getMostPopularTvs(completion: @escaping (Swift.Result<MostPopularData, ServiceError>)->Void)
     func getBoxOffice(completion: @escaping (Swift.Result<BoxOfficeWeekendData, ServiceError>)->Void)
     func getBoxOfficeAllTime(completion: @escaping (Swift.Result<BoxOfficeAllTimeData, ServiceError>)->Void)
     func getNewMovies(completion: @escaping (Swift.Result<NewMovieData, ServiceError>)-> Void)
+    
+    //MARK: - Search
     func searchMovie(title: String, completion: @escaping (Swift.Result<SearchData, ServiceError>)-> Void)
 }
 
