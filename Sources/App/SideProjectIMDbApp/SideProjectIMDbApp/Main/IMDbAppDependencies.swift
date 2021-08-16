@@ -32,11 +32,28 @@ class IMDbAppDependencies {
     }
     
     public func start() {
-        let apiKey = "k_4olf5ls3"
-        let client = URLSessionHTTPClient(session: URLSession.shared)
-        let service: IMDbApiServiceProtocol  = IMDbApiService(baseURL: URL(string: "https://imdb-api.com")!, client: client, apiKey: apiKey)
-        let manager: IMDbManagerProtocol = IMDbManager(service: service)
         
-        setRootViewController(HomeViewController(manager: manager))
+        let isLoggedIn:Bool = true
+        
+        if isLoggedIn {
+            let apiKey = "k_4olf5ls3"
+            let client = URLSessionHTTPClient(session: URLSession.shared)
+            let service: IMDbApiServiceProtocol  = IMDbApiService(baseURL: URL(string: "https://imdb-api.com")!, client: client, apiKey: apiKey)
+            let manager: IMDbManagerProtocol = IMDbManager(service: service)
+            
+            setRootViewController(HomeViewController(manager: manager))
+        } else {
+            setRootViewController(LoginViewController())
+        }
+
+    }
+}
+ 
+class LoginViewController: UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = .cyan
     }
 }
