@@ -10,6 +10,7 @@
 		2402008E26AD96540034A512 /* NetworkingService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2402008D26AD96540034A512 /* NetworkingService.framework */; };
 		2402008F26AD96540034A512 /* NetworkingService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2402008D26AD96540034A512 /* NetworkingService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2408F65426CAD67B00791DEF /* IMDbAppDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2408F65326CAD67B00791DEF /* IMDbAppDependencies.swift */; };
+		2408F65826CADBB700791DEF /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2408F65726CADBB700791DEF /* MainTabBarController.swift */; };
 		2422BD6426AF34AF001417F4 /* IMDbApiModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2422BD6326AF34AF001417F4 /* IMDbApiModule.framework */; };
 		2422BD6526AF34AF001417F4 /* IMDbApiModule.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2422BD6326AF34AF001417F4 /* IMDbApiModule.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2422BD6726AF3921001417F4 /* FakeIMDbManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2422BD6626AF3921001417F4 /* FakeIMDbManager.swift */; };
@@ -57,6 +58,7 @@
 /* Begin PBXFileReference section */
 		2402008D26AD96540034A512 /* NetworkingService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NetworkingService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2408F65326CAD67B00791DEF /* IMDbAppDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMDbAppDependencies.swift; sourceTree = "<group>"; };
+		2408F65726CADBB700791DEF /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		2422BD6326AF34AF001417F4 /* IMDbApiModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = IMDbApiModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2422BD6626AF3921001417F4 /* FakeIMDbManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeIMDbManager.swift; sourceTree = "<group>"; };
 		24FDD2CF26AC491D007CE4FD /* SideProjectIMDbApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SideProjectIMDbApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,8 +151,25 @@
 		2408F65226CAD63C00791DEF /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				2408F65626CADB9D00791DEF /* Extensions */,
+				2408F65526CADB9200791DEF /* UI */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		2408F65526CADB9200791DEF /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				2408F65726CADBB700791DEF /* MainTabBarController.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		2408F65626CADB9D00791DEF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		24FDD2C626AC491D007CE4FD = {
@@ -336,6 +355,7 @@
 			files = (
 				2408F65426CAD67B00791DEF /* IMDbAppDependencies.swift in Sources */,
 				24FDD2D726AC491D007CE4FD /* HomeViewController.swift in Sources */,
+				2408F65826CADBB700791DEF /* MainTabBarController.swift in Sources */,
 				24FDD2D326AC491D007CE4FD /* AppDelegate.swift in Sources */,
 				24FDD2D526AC491D007CE4FD /* SceneDelegate.swift in Sources */,
 			);
