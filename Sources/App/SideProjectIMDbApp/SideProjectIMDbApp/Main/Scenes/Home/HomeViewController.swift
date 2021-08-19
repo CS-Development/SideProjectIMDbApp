@@ -10,8 +10,8 @@ import IMDbApiModule
 
 class HomeViewController: UIViewController {
     
-    private var manager: IMDbManagerProtocol
-    
+   // private var manager: IMDbManagerProtocol
+    let viewModel: MovieViewModel
     private var collectionView: UICollectionView = UICollectionView(
         frame: .zero,
         collectionViewLayout: UICollectionViewFlowLayout()
@@ -20,8 +20,9 @@ class HomeViewController: UIViewController {
     private var mostPopularMovies = [MostPopularDataDetail]()
     // MARK: - Init
     
-    init(manager: IMDbManagerProtocol) {
-        self.manager = manager
+    init(viewModel: MovieViewModel) {
+       // self.manager = manager
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -34,20 +35,13 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        configureCollectionView()
-        
-        manager.getMostPopularMovies { [weak self] result in
+        viewModel.reloadCollectionView = { [weak self] in
             DispatchQueue.main.async {
-                switch result {
-                case .success(let response):
-                    self?.mostPopularMovies = response.items
-                    self?.collectionView.reloadData()
-                    break
-                case .failure(let error):
-                    print("error")
-                }
+                self?.collectionView.reloadData()
             }
         }
+        configureCollectionView()
+        viewModel.getMostPopularMovies()
     }
     
     private func configureCollectionView() {
@@ -62,23 +56,28 @@ class HomeViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         collectionView.frame = view.bounds
-        
-        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout{
-            layout.minimumLineSpacing = 10
-            layout.minimumInteritemSpacing = 10
-            layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-            let size = CGSize(width:(collectionView.bounds.width-30)/2, height: 250)
-            layout.itemSize = size
+        setCollectionViewLayout(collectionView: collectionView)
         }
     }
-}
+        
+    func setCollectionViewLayout(collectionView: UICollectionView){
+            if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout{
+                layout.minimumLineSpacing = 10
+                layout.minimumInteritemSpacing = 10
+                layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+                let size = CGSize(width:(collectionView.bounds.width-30)/2, height: 250)
+                layout.itemSize = size
+        }
+    }
+
+
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return mostPopularMovies.count > 20 ? 20 : mostPopularMovies.count
+        return viewModel.numberOfItemsInSection(section: section)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -88,7 +87,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         ) as? MovieCollectionViewCell else {
             return UICollectionViewCell()
         }
-        let movie = mostPopularMovies[indexPath.row]
+        let movie = viewModel.getMovieForIndexPath(indexPath: indexPath)
         let model = MovieCollectionViewCellViewModel(
             title: movie.title,
             artworkURL: URL(string: movie.image)

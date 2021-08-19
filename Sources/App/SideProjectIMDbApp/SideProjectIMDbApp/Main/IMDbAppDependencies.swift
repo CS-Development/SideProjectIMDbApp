@@ -12,7 +12,6 @@ import IMDbApiModule
 
 class IMDbAppDependencies {
     var window: UIWindow?
-    
     private init(){
         
     }
@@ -60,7 +59,7 @@ class IMDbAppDependencies {
     
     private func makeMainTabBarController(manager: IMDbManagerProtocol) -> UIViewController {
         
-        let homeVC = makeHomeViewController(manager: manager)
+        let homeVC = makeHomeVc()
         let searchVC = makeSearchViewController(manager: manager)
         let profileVC = makeProfileViewController(manager: manager)
         
@@ -71,9 +70,18 @@ class IMDbAppDependencies {
     
     // MARK: - Home Controller
     
-    private func makeHomeViewController(manager: IMDbManagerProtocol) -> UIViewController {
-        let viewController = HomeViewController(manager: manager)
-        viewController.title = "Home"
+//    private func makeHomeViewController(manager: IMDbManagerProtocol) -> UIViewController {
+//        let viewController = HomeViewController(manager: manager)
+//        viewController.title = "Home"
+//        let navigationController = UINavigationController(rootViewController: viewController)
+//        navigationController.title = "Home"
+//        navigationController.tabBarItem.image = UIImage(systemName: "house")
+//        return navigationController
+//    }
+    
+    func makeHomeVc() -> UIViewController {
+        let viewModel = MovieViewModel(manager: imdbManager)
+        let viewController = HomeViewController(viewModel: viewModel)
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.title = "Home"
         navigationController.tabBarItem.image = UIImage(systemName: "house")

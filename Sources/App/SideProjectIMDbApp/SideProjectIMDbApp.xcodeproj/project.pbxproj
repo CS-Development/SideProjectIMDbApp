@@ -27,6 +27,7 @@
 		24FDD2DF26AC491E007CE4FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24FDD2DD26AC491E007CE4FD /* LaunchScreen.storyboard */; };
 		24FDD2EA26AC491F007CE4FD /* SideProjectIMDbAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FDD2E926AC491F007CE4FD /* SideProjectIMDbAppTests.swift */; };
 		24FDD2F526AC491F007CE4FD /* SideProjectIMDbAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FDD2F426AC491F007CE4FD /* SideProjectIMDbAppUITests.swift */; };
+		5289AE2726CD68D6003E1EC6 /* MovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289AE2626CD68D6003E1EC6 /* MovieViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,7 @@
 		24FDD2F026AC491F007CE4FD /* SideProjectIMDbAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SideProjectIMDbAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		24FDD2F426AC491F007CE4FD /* SideProjectIMDbAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideProjectIMDbAppUITests.swift; sourceTree = "<group>"; };
 		24FDD2F626AC491F007CE4FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5289AE2626CD68D6003E1EC6 /* MovieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				2408F66826CAF67C00791DEF /* MovieCollectionViewCellViewModel.swift */,
+				5289AE2626CD68D6003E1EC6 /* MovieViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -422,6 +425,7 @@
 				2408F66126CAE51600791DEF /* ProfileViewController.swift in Sources */,
 				2408F66926CAF67C00791DEF /* MovieCollectionViewCellViewModel.swift in Sources */,
 				24FDD2D526AC491D007CE4FD /* SceneDelegate.swift in Sources */,
+				5289AE2726CD68D6003E1EC6 /* MovieViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
