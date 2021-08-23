@@ -8,6 +8,10 @@
 import UIKit
 import IMDbApiModule
 
+let headerTitles = ["Most Popular Movies",
+                    "Most Popular Tvs"
+                    ]
+
 class HomeViewController: UIViewController {
     
     let viewModel: HomeViewControllerViewModel
@@ -20,71 +24,7 @@ class HomeViewController: UIViewController {
             return HomeViewController.createSectionLayout(section: sectionIndex)
         }
     )
-    
-    private static func createSectionLayout(section: Int) -> NSCollectionLayoutSection {
-        switch section {
-        case 0:
-            // Item
-            let item = NSCollectionLayoutItem(
-                layoutSize: NSCollectionLayoutSize(
-                    widthDimension:.fractionalWidth(1.0),
-                    heightDimension: .fractionalHeight(1.0)
-                )
-            )
-            item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
-            
-            // Vertical Group
-            let verticalGroup = NSCollectionLayoutGroup.vertical(
-                layoutSize: NSCollectionLayoutSize(
-                    widthDimension: .fractionalWidth(1.0),
-                    heightDimension: .absolute(390)),
-                subitem: item,
-                count: 3
-            )
-            
-            let horizontalGroup = NSCollectionLayoutGroup.horizontal(
-                layoutSize: NSCollectionLayoutSize(
-                    widthDimension: .fractionalWidth(0.9),
-                    heightDimension: .absolute(390)
-                ),
-                subitem: verticalGroup,
-                count: 1
-            )
-            
-            // Section (made by groups)
-            let section = NSCollectionLayoutSection(group: horizontalGroup)
-            section.orthogonalScrollingBehavior = .groupPaging
-            return section
-        //case 1:
-        //    break
-        default:
-            // Item
-            let item = NSCollectionLayoutItem(
-                layoutSize: NSCollectionLayoutSize(
-                    widthDimension:.fractionalWidth(1.0),
-                    heightDimension: .fractionalHeight(1.0)
-                )
-            )
-            item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
-            
-            // Group (made by items)
-            
-            // Vertical Group
-            let group = NSCollectionLayoutGroup.vertical(
-                layoutSize: NSCollectionLayoutSize(
-                    widthDimension: .fractionalWidth(1.0),
-                    heightDimension: .absolute(390)),
-                subitem: item,
-                count: 1
-            )
-            
-            // Section (made by groups)
-            let section = NSCollectionLayoutSection(group: group)
-            section.orthogonalScrollingBehavior = .groupPaging
-            return section
-        }
-    }
-    
+        
     private var mostPopularMovies = [MostPopularDataDetail]()
     // MARK: - Init
     
@@ -116,6 +56,9 @@ class HomeViewController: UIViewController {
         view.addSubview(collectionView)
         collectionView.register(MovieCollectionViewCell.self,
                                 forCellWithReuseIdentifier: MovieCollectionViewCell.identifier)
+        collectionView.register(TitleHeaderCollectionReusableView.self,
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                withReuseIdentifier: TitleHeaderCollectionReusableView.identifier)
         collectionView.backgroundColor = .systemBackground
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -165,6 +108,20 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard let header = collectionView.dequeueReusableSupplementaryView(
+                ofKind: kind,
+                withReuseIdentifier: TitleHeaderCollectionReusableView.identifier,
+                for: indexPath
+        ) as? TitleHeaderCollectionReusableView, kind == UICollectionView.elementKindSectionHeader else {
+            return UICollectionReusableView()
+        }
+        let section = indexPath.section
+        let title = headerTitles[section]
+        header.configure(with: title)
+        return header
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         
@@ -172,4 +129,86 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         router.routeToMovieDetails(for: movie)
     }
     
+}
+
+extension HomeViewController {
+    
+    private static func createSectionLayout(section: Int) -> NSCollectionLayoutSection {
+        
+        let supplementaryViews = [
+            NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1),
+                    heightDimension: .absolute(50)
+                ),
+                elementKind: UICollectionView
+                    .elementKindSectionHeader,
+                alignment: .top
+            )
+        ]
+        
+        switch section {
+        case 0:
+            // Item
+            let item = NSCollectionLayoutItem(
+                layoutSize: NSCollectionLayoutSize(
+                    widthDimension:.fractionalWidth(1.0),
+                    heightDimension: .fractionalHeight(1.0)
+                )
+            )
+            item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
+            
+            // Vertical Group
+            let verticalGroup = NSCollectionLayoutGroup.vertical(
+                layoutSize: NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1.0),
+                    heightDimension: .absolute(390)),
+                subitem: item,
+                count: 3
+            )
+            
+            let horizontalGroup = NSCollectionLayoutGroup.horizontal(
+                layoutSize: NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(0.9),
+                    heightDimension: .absolute(390)
+                ),
+                subitem: verticalGroup,
+                count: 1
+            )
+            
+            // Section (made by groups)
+            let section = NSCollectionLayoutSection(group: horizontalGroup)
+            section.orthogonalScrollingBehavior = .groupPaging
+            section.boundarySupplementaryItems = supplementaryViews
+            return section
+        //case 1:
+        //    break
+        default:
+            // Item
+            let item = NSCollectionLayoutItem(
+                layoutSize: NSCollectionLayoutSize(
+                    widthDimension:.fractionalWidth(1.0),
+                    heightDimension: .fractionalHeight(1.0)
+                )
+            )
+            item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
+            
+            // Group (made by items)
+            
+            // Vertical Group
+            let group = NSCollectionLayoutGroup.vertical(
+                layoutSize: NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1.0),
+                    heightDimension: .absolute(390)),
+                subitem: item,
+                count: 1
+            )
+            
+            // Section (made by groups)
+            let section = NSCollectionLayoutSection(group: group)
+            section.orthogonalScrollingBehavior = .groupPaging
+            section.boundarySupplementaryItems = supplementaryViews
+            return section
+        }
+    }
 }
