@@ -8,7 +8,7 @@
 import Foundation
 import IMDbApiModule
 
-class MovieViewModel {
+class HomeViewControllerViewModel {
     
     ///vars
     private var manager: IMDbManagerProtocol

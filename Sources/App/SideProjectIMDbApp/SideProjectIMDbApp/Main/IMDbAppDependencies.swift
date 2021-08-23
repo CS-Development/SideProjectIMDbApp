@@ -10,6 +10,21 @@ import UIKit
 import NetworkingService
 import IMDbApiModule
 
+
+class FakeHomeViewRouter: HomeViewRouting {
+    func routeToMovieDetails(for movie: MostPopularDataDetail) {
+        //let vc = ProfileViewController(manager: <#T##IMDbManagerProtocol#>)
+        
+        let vc = UIViewController()
+        vc.view.backgroundColor = .brown
+        vc.title = "Fake Test"
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    var navigationController: UINavigationController?
+}
+
+
 class IMDbAppDependencies {
     var window: UIWindow?
     private init(){
@@ -59,7 +74,7 @@ class IMDbAppDependencies {
     
     private func makeMainTabBarController(manager: IMDbManagerProtocol) -> UIViewController {
         
-        let homeVC = makeHomeVc()
+        let homeVC = makeHomeViewController()
         let searchVC = makeSearchViewController(manager: manager)
         let profileVC = makeProfileViewController(manager: manager)
         
@@ -79,12 +94,19 @@ class IMDbAppDependencies {
 //        return navigationController
 //    }
     
-    func makeHomeVc() -> UIViewController {
-        let viewModel = MovieViewModel(manager: imdbManager)
-        let viewController = HomeViewController(viewModel: viewModel)
+    func makeHomeViewController() -> UIViewController {
+        let viewModel = HomeViewControllerViewModel(manager: imdbManager)
+        let router = HomeViewRouter()
+        
+        //let fakeRouter = FakeHomeViewRouter()
+        
+        let viewController = HomeViewController(viewModel: viewModel, router: router)
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.title = "Home"
         navigationController.tabBarItem.image = UIImage(systemName: "house")
+        router.navigationController = navigationController
+        
+        //fakeRouter.navigationController = navigationController
         return navigationController
     }
     
@@ -108,10 +130,21 @@ class IMDbAppDependencies {
         navigationController.title = "Profile"
         navigationController.tabBarItem.image = UIImage(systemName: "contacts")
         return navigationController
-        return ProfileViewController(manager: manager)
+        //return ProfileViewController(manager: manager)
+    }
+    
+    //
+    
+    func makeMovieDetailsViewController(for movie: MostPopularDataDetail) -> UIViewController {
+        let viewModel = MovieDetailsViewControllerViewModel(movie: movie)
+        let viewController = MovieDetailsViewController(viewModel: viewModel)
+        return viewController
     }
 }
 
+
+
+// Routing
 
 
 
