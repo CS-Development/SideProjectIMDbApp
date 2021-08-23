@@ -10,6 +10,21 @@ import UIKit
 import NetworkingService
 import IMDbApiModule
 
+
+class FakeHomeViewRouter: HomeViewRouting {
+    func routeToMovieDetails(for movie: MostPopularDataDetail) {
+        //let vc = ProfileViewController(manager: <#T##IMDbManagerProtocol#>)
+        
+        let vc = UIViewController()
+        vc.view.backgroundColor = .brown
+        vc.title = "Fake Test"
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    var navigationController: UINavigationController?
+}
+
+
 class IMDbAppDependencies {
     var window: UIWindow?
     private init(){
@@ -81,10 +96,17 @@ class IMDbAppDependencies {
     
     func makeHomeViewController() -> UIViewController {
         let viewModel = HomeViewControllerViewModel(manager: imdbManager)
-        let viewController = HomeViewController(viewModel: viewModel)
+        let router = HomeViewRouter()
+        
+        //let fakeRouter = FakeHomeViewRouter()
+        
+        let viewController = HomeViewController(viewModel: viewModel, router: router)
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.title = "Home"
         navigationController.tabBarItem.image = UIImage(systemName: "house")
+        router.navigationController = navigationController
+        
+        //fakeRouter.navigationController = navigationController
         return navigationController
     }
     
@@ -120,6 +142,9 @@ class IMDbAppDependencies {
     }
 }
 
+
+
+// Routing
 
 
 

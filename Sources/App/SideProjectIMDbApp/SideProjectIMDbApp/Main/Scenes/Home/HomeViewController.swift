@@ -12,6 +12,8 @@ class HomeViewController: UIViewController {
     
    // private var manager: IMDbManagerProtocol
     let viewModel: HomeViewControllerViewModel
+    let router: HomeViewRouting
+    
     private var collectionView: UICollectionView = UICollectionView(
         frame: .zero,
         collectionViewLayout: UICollectionViewFlowLayout()
@@ -20,9 +22,10 @@ class HomeViewController: UIViewController {
     private var mostPopularMovies = [MostPopularDataDetail]()
     // MARK: - Init
     
-    init(viewModel: HomeViewControllerViewModel) {
+    init(viewModel: HomeViewControllerViewModel, router: HomeViewRouting) {
        // self.manager = manager
         self.viewModel = viewModel
+        self.router = router
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -101,9 +104,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         collectionView.deselectItem(at: indexPath, animated: true)
         
         let movie = viewModel.getMovieForIndexPath(indexPath: indexPath)
-        
-        let vc = IMDbAppDependencies.shared.makeMovieDetailsViewController(for: movie )
-        navigationController?.pushViewController(vc, animated: true)
+        router.routeToMovieDetails(for: movie)
     }
     
 }
