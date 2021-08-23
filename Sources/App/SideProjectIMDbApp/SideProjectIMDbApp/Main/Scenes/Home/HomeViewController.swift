@@ -11,7 +11,7 @@ import IMDbApiModule
 class HomeViewController: UIViewController {
     
    // private var manager: IMDbManagerProtocol
-    let viewModel: MovieViewModel
+    let viewModel: HomeViewControllerViewModel
     private var collectionView: UICollectionView = UICollectionView(
         frame: .zero,
         collectionViewLayout: UICollectionViewFlowLayout()
@@ -20,7 +20,7 @@ class HomeViewController: UIViewController {
     private var mostPopularMovies = [MostPopularDataDetail]()
     // MARK: - Init
     
-    init(viewModel: MovieViewModel) {
+    init(viewModel: HomeViewControllerViewModel) {
        // self.manager = manager
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -95,6 +95,15 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         cell.configure(with: model)
         cell.backgroundColor = .lightGray
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        
+        let movie = viewModel.getMovieForIndexPath(indexPath: indexPath)
+        
+        let vc = IMDbAppDependencies.shared.makeMovieDetailsViewController(for: movie )
+        navigationController?.pushViewController(vc, animated: true)
     }
     
 }

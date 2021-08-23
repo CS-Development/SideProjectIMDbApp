@@ -59,7 +59,7 @@ class IMDbAppDependencies {
     
     private func makeMainTabBarController(manager: IMDbManagerProtocol) -> UIViewController {
         
-        let homeVC = makeHomeVc()
+        let homeVC = makeHomeViewController()
         let searchVC = makeSearchViewController(manager: manager)
         let profileVC = makeProfileViewController(manager: manager)
         
@@ -79,8 +79,8 @@ class IMDbAppDependencies {
 //        return navigationController
 //    }
     
-    func makeHomeVc() -> UIViewController {
-        let viewModel = MovieViewModel(manager: imdbManager)
+    func makeHomeViewController() -> UIViewController {
+        let viewModel = HomeViewControllerViewModel(manager: imdbManager)
         let viewController = HomeViewController(viewModel: viewModel)
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.title = "Home"
@@ -108,7 +108,15 @@ class IMDbAppDependencies {
         navigationController.title = "Profile"
         navigationController.tabBarItem.image = UIImage(systemName: "contacts")
         return navigationController
-        return ProfileViewController(manager: manager)
+        //return ProfileViewController(manager: manager)
+    }
+    
+    //
+    
+    func makeMovieDetailsViewController(for movie: MostPopularDataDetail) -> UIViewController {
+        let viewModel = MovieDetailsViewControllerViewModel(movie: movie)
+        let viewController = MovieDetailsViewController(viewModel: viewModel)
+        return viewController
     }
 }
 
