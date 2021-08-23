@@ -11,6 +11,8 @@ class MovieDetailsViewController: UIViewController {
     
     let viewModel: MovieDetailsViewControllerViewModel
     
+    let scrollView = UIScrollView(frame: .zero)
+    
     internal init(viewModel: MovieDetailsViewControllerViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -25,5 +27,13 @@ class MovieDetailsViewController: UIViewController {
 
         view.backgroundColor = .systemPink
         title = viewModel.getTitle()
+        
+        view.addSubview(scrollView)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        scrollView.frame = view.bounds
     }
 }
