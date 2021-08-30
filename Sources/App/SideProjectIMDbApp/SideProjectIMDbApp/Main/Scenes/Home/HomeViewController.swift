@@ -24,7 +24,6 @@ class HomeViewController: UIViewController {
         }
     )
         
-    private var mostPopularMovies = [MostPopularDataDetail]()
     // MARK: - Init
     
     init(viewModel: HomeViewControllerViewModel, router: HomeViewRouting) {
@@ -48,7 +47,7 @@ class HomeViewController: UIViewController {
             }
         }
         configureCollectionView()
-        viewModel.getMostPopularMovies()
+        viewModel.getData()
     }
     
     private func configureCollectionView() {
@@ -87,7 +86,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         return 2
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.numberOfItemsInSection(section: section)
+        guard let homeSectionType = HomeSectionTypes(rawValue: section) else {
+            return 0
+        }
+        return viewModel.numberOfItemsInSection(section: homeSectionType)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -97,7 +99,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         ) as? MovieCollectionViewCell else {
             return UICollectionViewCell()
         }
-        let movie = viewModel.getMovieForIndexPath(indexPath: indexPath)
+        guard let movie = viewModel.getMovieForIndexPath(indexPath: indexPath) else {
+            return UICollectionViewCell()
+        }
         let model = MovieCollectionViewCellViewModel(
             title: movie.title,
             artworkURL: URL(string: movie.image)
@@ -124,7 +128,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         
-        let movie = viewModel.getMovieForIndexPath(indexPath: indexPath)
+        guard let movie = viewModel.getMovieForIndexPath(indexPath: indexPath) else { return }
         router.routeToMovieDetails(for: movie)
     }
     
