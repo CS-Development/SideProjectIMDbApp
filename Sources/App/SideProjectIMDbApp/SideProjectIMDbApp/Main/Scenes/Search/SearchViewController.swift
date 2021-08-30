@@ -12,6 +12,14 @@ class SearchViewController: UIViewController {
     
     private let viewModel: SearchViewModel
     
+    private let searchController: UISearchController = {
+        let vc = UISearchController(searchResultsController: SearchResultsViewController())
+        vc.searchBar.placeholder = "Movies, Tv Shows"
+        vc.searchBar.searchBarStyle = .minimal
+        vc.definesPresentationContext = true
+        return vc
+    }()
+    
     init(viewModel: SearchViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -26,7 +34,21 @@ class SearchViewController: UIViewController {
         
         view.backgroundColor = .systemBackground
         
-        viewModel.searchMovieBy(title: "Inception")
+        //viewModel.searchMovieBy(title: "Inception")
+        
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+        navigationItem.searchController = searchController
 
     }
+}
+
+extension SearchViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        
+    }
+}
+
+extension SearchViewController: UISearchBarDelegate {
+    
 }
