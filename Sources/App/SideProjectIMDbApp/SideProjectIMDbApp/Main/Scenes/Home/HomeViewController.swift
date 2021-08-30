@@ -19,7 +19,6 @@ class HomeViewController: UIViewController {
     
     private var collectionView: UICollectionView = UICollectionView(
         frame: .zero,
-//        collectionViewLayout: UICollectionViewFlowLayout()
         collectionViewLayout: UICollectionViewCompositionalLayout { sectionIndex, _ -> NSCollectionLayoutSection? in
             return HomeViewController.createSectionLayout(section: sectionIndex)
         }
@@ -67,7 +66,7 @@ class HomeViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         collectionView.frame = view.bounds
-        setCollectionViewLayout(collectionView: collectionView)
+//        setCollectionViewLayout(collectionView: collectionView)
         }
     }
         
@@ -152,18 +151,27 @@ extension HomeViewController {
             // Item
             let item = NSCollectionLayoutItem(
                 layoutSize: NSCollectionLayoutSize(
-                    widthDimension:.fractionalWidth(1.0),
+                    widthDimension:.fractionalWidth(0.3),
                     heightDimension: .fractionalHeight(1.0)
                 )
             )
             item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
+            
+            let rowGroup = NSCollectionLayoutGroup.horizontal(
+                layoutSize: NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1.0),
+                    heightDimension: .fractionalHeight(1.0)
+                ),
+                subitem: item,
+                count: 3
+            )
             
             // Vertical Group
             let verticalGroup = NSCollectionLayoutGroup.vertical(
                 layoutSize: NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1.0),
                     heightDimension: .absolute(390)),
-                subitem: item,
+                subitem: rowGroup,
                 count: 3
             )
             
