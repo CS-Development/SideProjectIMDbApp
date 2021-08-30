@@ -113,7 +113,8 @@ class IMDbAppDependencies {
     // MARK: - Search Controller
     
     private func makeSearchViewController(manager: IMDbManagerProtocol) -> UIViewController {
-        let viewController = SearchViewController(manager: manager)
+        let viewModel = SearchViewModel(manager: manager)
+        let viewController = SearchViewController(viewModel: viewModel)
         viewController.title = "Search"
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.title = "Search"

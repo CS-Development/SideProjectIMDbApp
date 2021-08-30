@@ -27,6 +27,7 @@
 		2422BD6426AF34AF001417F4 /* IMDbApiModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2422BD6326AF34AF001417F4 /* IMDbApiModule.framework */; };
 		2422BD6526AF34AF001417F4 /* IMDbApiModule.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2422BD6326AF34AF001417F4 /* IMDbApiModule.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2422BD6726AF3921001417F4 /* FakeIMDbManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2422BD6626AF3921001417F4 /* FakeIMDbManager.swift */; };
+		24F1EC8826DD566400D98A21 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F1EC8726DD566400D98A21 /* SearchViewModel.swift */; };
 		24FDD2D326AC491D007CE4FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FDD2D226AC491D007CE4FD /* AppDelegate.swift */; };
 		24FDD2D526AC491D007CE4FD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FDD2D426AC491D007CE4FD /* SceneDelegate.swift */; };
 		24FDD2D726AC491D007CE4FD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FDD2D626AC491D007CE4FD /* HomeViewController.swift */; };
@@ -88,6 +89,7 @@
 		2415827126D42BC600D11676 /* TitleHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		2422BD6326AF34AF001417F4 /* IMDbApiModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = IMDbApiModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2422BD6626AF3921001417F4 /* FakeIMDbManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeIMDbManager.swift; sourceTree = "<group>"; };
+		24F1EC8726DD566400D98A21 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		24FDD2CF26AC491D007CE4FD /* SideProjectIMDbApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SideProjectIMDbApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24FDD2D226AC491D007CE4FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24FDD2D426AC491D007CE4FD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				2408F65E26CAE4FA00791DEF /* SearchViewController.swift */,
+				24F1EC8726DD566400D98A21 /* SearchViewModel.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -473,6 +476,7 @@
 				2415826326D40F2100D11676 /* MovieDetailsViewController.swift in Sources */,
 				24FDD2D726AC491D007CE4FD /* HomeViewController.swift in Sources */,
 				2415826C26D41BE700D11676 /* HomeViewRouter.swift in Sources */,
+				24F1EC8826DD566400D98A21 /* SearchViewModel.swift in Sources */,
 				2415827226D42BC600D11676 /* TitleHeaderCollectionReusableView.swift in Sources */,
 				2408F65F26CAE4FA00791DEF /* SearchViewController.swift in Sources */,
 				2415826A26D4184600D11676 /* Routing.swift in Sources */,

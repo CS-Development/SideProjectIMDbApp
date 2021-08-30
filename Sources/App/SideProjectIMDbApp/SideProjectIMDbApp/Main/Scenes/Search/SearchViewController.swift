@@ -10,10 +10,10 @@ import IMDbApiModule
 
 class SearchViewController: UIViewController {
     
-    private let manager: IMDbManagerProtocol
+    private let viewModel: SearchViewModel
     
-    init(manager: IMDbManagerProtocol) {
-        self.manager = manager
+    init(viewModel: SearchViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -24,10 +24,9 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .yellow
+        view.backgroundColor = .systemBackground
         
-        manager.searchMovie(title: "Inception 2010") { answer in
-            print(answer)
-        }
+        viewModel.searchMovieBy(title: "Inception")
+
     }
 }
