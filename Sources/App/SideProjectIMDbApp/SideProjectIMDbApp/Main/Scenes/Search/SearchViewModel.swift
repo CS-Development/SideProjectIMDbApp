@@ -18,9 +18,15 @@ class SearchViewModel {
         self.manager = manager
     }
     
-    public func searchMovieBy(title: String) {
-        manager.searchMovie(title: title) { answer in
-            print(answer)
+    public func searchMovieBy(title: String, completion: @escaping (SearchData)-> Void) {
+        manager.searchMovie(title: title) { result in
+            
+            switch result {
+            case .success(let results):
+                completion(results)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
         }
     }
 }

@@ -17,7 +17,7 @@ public protocol IMDbManagerProtocol {
     func getBoxOfficeAllTime(completion: @escaping (BoxOfficeAllTimeData)->Void)
     func getNewMovies(completion: @escaping (NewMovieData)->Void)
     
-    func searchMovie(title: String ,completion: @escaping (SearchData)-> Void)
+    func searchMovie(title: String ,completion: @escaping (Result<SearchData, NetworkingServiceError>)-> Void)
 }
 
 public class IMDbManager: IMDbManagerProtocol {
@@ -93,14 +93,14 @@ public class IMDbManager: IMDbManagerProtocol {
         }
     }
     
-    public func searchMovie(title: String, completion: @escaping (SearchData) -> Void) {
+    public func searchMovie(title: String, completion: @escaping (Result<SearchData, NetworkingServiceError>) -> Void) {
         service.searchMovie(title: title) { (result) in
             switch result {
             case let .failure(error):
                 print(error)
                 break
-            case let .success(answer):
-                completion(answer)
+            case .success(_):
+                completion(result)
                 break
             }
         }

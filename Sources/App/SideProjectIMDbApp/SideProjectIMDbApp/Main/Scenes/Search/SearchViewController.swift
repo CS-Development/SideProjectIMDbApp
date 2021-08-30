@@ -34,7 +34,7 @@ class SearchViewController: UIViewController {
         
         view.backgroundColor = .systemBackground
         
-        //viewModel.searchMovieBy(title: "Inception")
+        
         
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
@@ -51,4 +51,24 @@ extension SearchViewController: UISearchResultsUpdating {
 
 extension SearchViewController: UISearchBarDelegate {
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        guard let resultsController = searchController.searchResultsController as? SearchResultsViewController,
+              let query = searchBar.text,
+              !query.trimmingCharacters(in: .whitespaces).isEmpty else {
+            return
+        }
+        
+        resultsController.delegate = self
+        
+        viewModel.searchMovieBy(title: query) { results in
+            resultsController.update(with: results)
+        }
+    }
+}
+
+extension SearchViewController: SearchResultsViewControllerDelegate {
+    func didTapResult(_ result: String) {
+        
+    }
 }
