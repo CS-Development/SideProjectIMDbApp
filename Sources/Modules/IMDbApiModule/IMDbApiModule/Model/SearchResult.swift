@@ -9,10 +9,10 @@ import Foundation
 import NetworkingService
 
 public struct SearchResult: DTO{
-    var id:                 String
-    var resultType:         String
-    var image:              String
-    var title:              String
+    public var id:                 String
+    public var resultType:         String
+    public var image:              String
+    public var title:              String
     public var description: String {
     
     return """

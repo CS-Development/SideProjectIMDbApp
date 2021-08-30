@@ -1,0 +1,75 @@
+//
+//  SearchResultsViewController.swift
+//  SideProjectIMDbApp
+//
+//  Created by Christian Slanzi on 30.08.21.
+//
+
+import UIKit
+import IMDbApiModule
+
+protocol SearchResultsViewControllerDelegate: AnyObject {
+    func didTapResult(_ result: String)
+}
+
+class SearchResultsViewController: UIViewController {
+    weak var delegate: SearchResultsViewControllerDelegate?
+    
+    private let tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.backgroundColor = .systemBackground
+        tableView.register(SearchResultDefaultTableViewCell.self,
+                           forCellReuseIdentifier: SearchResultDefaultTableViewCell.identifier)
+        tableView.isHidden = true
+        return tableView
+    }()
+    
+    var results = [SearchResult]()
+    
+    // MARK: Lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = "Search Results"
+        view.backgroundColor = .clear
+        view.addSubview(tableView)
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.frame = view.bounds
+    }
+    
+    // MARK: Search results
+    
+    public func update(with data: SearchData) {
+        
+        // create our cell's models
+        results = data.results
+        
+        tableView.reloadData()
+        tableView.isHidden = false // if results not empty
+    }
+}
+
+extension SearchResultsViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return results.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: SearchResultDefaultTableViewCell.identifier,
+                for: indexPath) as? SearchResultDefaultTableViewCell else {
+            return UITableViewCell()
+        }
+        cell.configure(with: results[indexPath.row].title)
+        return cell
+    }
+}

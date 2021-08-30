@@ -12,19 +12,36 @@ class HomeViewControllerViewModel {
     
     ///vars
     private var manager: IMDbManagerProtocol
+    
     private var mostPopularMovies: [MostPopularDataDetail] = []
+    private var mostPopularTvs: [MostPopularDataDetail] = []
+    
     var reloadCollectionView: () -> Void = { }
     // MARK: - Init
     init(manager: IMDbManagerProtocol) {
         self.manager = manager
     }
     
-    func getMostPopularMovies(){
+    public func getData() {
+        
         manager.getMostPopularMovies { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let response):
-                    self?.mostPopularMovies = response.items
+                    self?.mostPopularMovies = response.items.dropLast(90)
+                    self?.reloadCollectionView()
+                    break
+                case .failure(let error):
+                    print("error")
+                }
+            }
+        }
+        
+        manager.getMostPopularTvs { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let response):
+                    self?.mostPopularTvs = response.items.dropLast(90)
                     self?.reloadCollectionView()
                     break
                 case .failure(let error):
@@ -34,12 +51,28 @@ class HomeViewControllerViewModel {
         }
     }
     
-    func numberOfItemsInSection(section: Int) -> Int {
-        return mostPopularMovies.count
+    func numberOfItemsInSection(section: HomeSectionTypes) -> Int {
+        switch section {
+        case .mostPopularMovies:
+            return mostPopularMovies.count
+        case .mostPopularTvs:
+            return mostPopularTvs.count
+        }
     }
-   
     
-    func getMovieForIndexPath(indexPath: IndexPath) -> MostPopularDataDetail {
-        return mostPopularMovies[indexPath.row]
+    func getMovieForIndexPath(indexPath: IndexPath) -> MostPopularDataDetail? {
+        guard let homeSection = HomeSectionTypes(rawValue: indexPath.section) else { return nil }
+        
+        switch homeSection {
+        case .mostPopularMovies:
+            return mostPopularMovies[indexPath.row]
+        case .mostPopularTvs:
+            return mostPopularTvs[indexPath.row]
+        }
     }
+}
+
+enum HomeSectionTypes: Int {
+    case mostPopularMovies = 0
+    case mostPopularTvs = 1
 }

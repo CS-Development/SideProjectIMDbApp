@@ -12,6 +12,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
     
     private let label: UILabel = {
         let label = UILabel()
+        label.backgroundColor = .gray
         label.textColor = .white
         label.font = .systemFont(ofSize: 16, weight: .semibold)
         label.numberOfLines = 0
@@ -40,8 +41,9 @@ class MovieCollectionViewCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        imageView.frame = CGRect(x: 0, y: 00, width: width, height: height)
-        label.frame = CGRect(x: 10, y: height-44-10, width: width-20, height: 44)
+        imageView.frame = CGRect(x: 0, y: 0, width: width, height: height-44)
+        label.frame = CGRect(x: 10, y: height-44, width: width-20, height: 44)
+        label.sizeToFit()
     }
     
     override func prepareForReuse() {

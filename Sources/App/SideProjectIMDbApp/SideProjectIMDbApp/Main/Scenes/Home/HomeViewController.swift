@@ -19,13 +19,11 @@ class HomeViewController: UIViewController {
     
     private var collectionView: UICollectionView = UICollectionView(
         frame: .zero,
-//        collectionViewLayout: UICollectionViewFlowLayout()
         collectionViewLayout: UICollectionViewCompositionalLayout { sectionIndex, _ -> NSCollectionLayoutSection? in
             return HomeViewController.createSectionLayout(section: sectionIndex)
         }
     )
         
-    private var mostPopularMovies = [MostPopularDataDetail]()
     // MARK: - Init
     
     init(viewModel: HomeViewControllerViewModel, router: HomeViewRouting) {
@@ -49,7 +47,7 @@ class HomeViewController: UIViewController {
             }
         }
         configureCollectionView()
-        viewModel.getMostPopularMovies()
+        viewModel.getData()
     }
     
     private func configureCollectionView() {
@@ -67,7 +65,7 @@ class HomeViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         collectionView.frame = view.bounds
-        setCollectionViewLayout(collectionView: collectionView)
+//        setCollectionViewLayout(collectionView: collectionView)
         }
     }
         
@@ -88,7 +86,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         return 2
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.numberOfItemsInSection(section: section)
+        guard let homeSectionType = HomeSectionTypes(rawValue: section) else {
+            return 0
+        }
+        return viewModel.numberOfItemsInSection(section: homeSectionType)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -98,7 +99,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         ) as? MovieCollectionViewCell else {
             return UICollectionViewCell()
         }
-        let movie = viewModel.getMovieForIndexPath(indexPath: indexPath)
+        guard let movie = viewModel.getMovieForIndexPath(indexPath: indexPath) else {
+            return UICollectionViewCell()
+        }
         let model = MovieCollectionViewCellViewModel(
             title: movie.title,
             artworkURL: URL(string: movie.image)
@@ -125,7 +128,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         
-        let movie = viewModel.getMovieForIndexPath(indexPath: indexPath)
+        guard let movie = viewModel.getMovieForIndexPath(indexPath: indexPath) else { return }
         router.routeToMovieDetails(for: movie)
     }
     
@@ -152,18 +155,27 @@ extension HomeViewController {
             // Item
             let item = NSCollectionLayoutItem(
                 layoutSize: NSCollectionLayoutSize(
-                    widthDimension:.fractionalWidth(1.0),
+                    widthDimension:.fractionalWidth(0.3),
                     heightDimension: .fractionalHeight(1.0)
                 )
             )
             item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
+            
+            let rowGroup = NSCollectionLayoutGroup.horizontal(
+                layoutSize: NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1.0),
+                    heightDimension: .fractionalHeight(1.0)
+                ),
+                subitem: item,
+                count: 3
+            )
             
             // Vertical Group
             let verticalGroup = NSCollectionLayoutGroup.vertical(
                 layoutSize: NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1.0),
                     heightDimension: .absolute(390)),
-                subitem: item,
+                subitem: rowGroup,
                 count: 3
             )
             
