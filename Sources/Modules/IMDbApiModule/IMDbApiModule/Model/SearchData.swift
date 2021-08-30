@@ -11,7 +11,7 @@ import NetworkingService
 public struct SearchData: DTO {
     var searchType:              String
     var expression:              String
-    var results:                [SearchResult]
+    public var results:                [SearchResult]
     var errorMessage:            String
     public var description: String {
         return """

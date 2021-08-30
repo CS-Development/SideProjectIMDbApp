@@ -62,7 +62,9 @@ extension SearchViewController: UISearchBarDelegate {
         resultsController.delegate = self
         
         viewModel.searchMovieBy(title: query) { results in
-            resultsController.update(with: results)
+            DispatchQueue.main.async {
+                resultsController.update(with: results)
+            }
         }
     }
 }
