@@ -28,7 +28,7 @@ class HomeViewControllerViewModel {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let response):
-                    self?.mostPopularMovies = response.items.dropLast(90)
+                    self?.mostPopularMovies = response.items
                     self?.reloadCollectionView()
                     break
                 case .failure(let error):
@@ -41,7 +41,7 @@ class HomeViewControllerViewModel {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let response):
-                    self?.mostPopularTvs = response.items.dropLast(90)
+                    self?.mostPopularTvs = response.items
                     self?.reloadCollectionView()
                     break
                 case .failure(let error):
