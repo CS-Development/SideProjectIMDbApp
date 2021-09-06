@@ -72,4 +72,11 @@ extension SearchResultsViewController: UITableViewDelegate, UITableViewDataSourc
         cell.configure(with: results[indexPath.row].title)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        //TODO: show the movie details
+        delegate?.didTapResult(results[indexPath.row].title)
+    }
 }

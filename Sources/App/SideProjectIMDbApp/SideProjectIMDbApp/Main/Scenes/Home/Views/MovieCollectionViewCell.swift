@@ -9,6 +9,7 @@ import UIKit
 
 class MovieCollectionViewCell: UICollectionViewCell {
     static let identifier = "MovieCollectionViewCell"
+    var task: URLSessionDataTask?
     
     private let label: UILabel = {
         let label = UILabel()
@@ -49,12 +50,14 @@ class MovieCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         label.text = nil
-        //imageView.image = nil
+        task?.cancel()
+        task = nil
+        imageView.image = nil
     }
     
     func configure(with viewModel: MovieCollectionViewCellViewModel) {
         label.text = viewModel.title
         guard let url = viewModel.artworkURL else { return }
-        imageView.image = UIImage(fromURL: url)
+        task = imageView.downloadImage(fromURL: url)
     }
 }
