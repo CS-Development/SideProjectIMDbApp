@@ -18,4 +18,16 @@ class MovieDetailsViewControllerViewModel {
     func getTitle() -> String {
         return movie.title
     }
+    
+    func getDescription() ->  String {
+        return movie.fullTitle
+    }
+    
+    func getCrew() -> String {
+        return movie.crew
+    }
+    
+    func getImageUrl() -> URL? {
+        return URL(string: movie.image)
+    }
 }
