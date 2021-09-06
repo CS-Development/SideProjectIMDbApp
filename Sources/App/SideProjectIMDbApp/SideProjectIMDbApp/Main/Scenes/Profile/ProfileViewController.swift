@@ -72,16 +72,35 @@ class ProfileViewController: UIViewController {
                                secondName: "Smith",
                                email: "joe.smith@gmail.com",
                                userId: "@joe_smith",
-                               subscription: "montly sub.")
+                               subscription: "montly sub.", pictureUrl: model.items.first!.image)
         
         
         models.append("Full Name: \(user.displayName)")
         models.append("Email Address: \(user.email)")
         models.append("User ID: \(user.userId)")
         models.append("Subscription Plan: \(user.subscription)")
+        createTableHeader(with: user.pictureUrl)
         
         tableView.reloadData()
+    }
+    
+    private func createTableHeader(with urlString: String) {
+        guard let url = URL(string: urlString) else {
+            return
+        }
         
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: view.width, height: view.width/1.5))
+        
+        let imageSize: CGFloat = headerView.height/2
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: imageSize, height: imageSize))
+        headerView.addSubview(imageView)
+        imageView.center = headerView.center
+        imageView.backgroundColor = .red
+        imageView.contentMode = .scaleAspectFill
+        _ = imageView.downloadImage(fromURL: url)
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = imageSize/2
+        tableView.tableHeaderView = headerView
     }
 }
 
@@ -103,6 +122,7 @@ struct UserProfile {
     let email: String
     let userId: String
     let subscription: String
+    let pictureUrl: String
     
     var displayName: String {
         return firstName + " " + secondName
