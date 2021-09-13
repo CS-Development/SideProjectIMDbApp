@@ -28,6 +28,8 @@ class MovieDetailsViewControllerViewModel {
     }
     
     func getImageUrl() -> URL? {
-        return URL(string: movie.image)
+        let url = URL(string: movie.image)
+        
+        return url?.convertToImdbImageOriginalUrl()
     }
 }

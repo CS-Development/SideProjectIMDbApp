@@ -57,7 +57,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
     
     func configure(with viewModel: MovieCollectionViewCellViewModel) {
         label.text = viewModel.title
-        guard let url = viewModel.artworkURL else { return }
+        guard let url = viewModel.artworkURL?.convertToImdbImageOriginalUrl() else { return }
         task = imageView.downloadImage(fromURL: url)
     }
 }

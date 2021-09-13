@@ -82,3 +82,17 @@ extension UIImageView {
         return task
     }
 }
+
+extension URL {
+    /// this utility convertion method works  only for imdb images  urls
+    func convertToImdbImageOriginalUrl() -> URL? {
+        var path = "https://imdb-api.com/images/original/" + self.lastPathComponent
+        guard let range = path.range(of: "._V1") else {
+            return nil
+        }
+        path = path.substring(to: range.lowerBound)
+        path.append("._V1_Ratio0.6791_AL_.jpg")
+        
+        return URL(string: path)
+    }
+}
