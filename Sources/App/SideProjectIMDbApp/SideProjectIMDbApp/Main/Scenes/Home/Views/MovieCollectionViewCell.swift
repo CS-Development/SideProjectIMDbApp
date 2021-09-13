@@ -58,6 +58,13 @@ class MovieCollectionViewCell: UICollectionViewCell {
     func configure(with viewModel: MovieCollectionViewCellViewModel) {
         label.text = viewModel.title
         guard let url = viewModel.artworkURL else { return }
+        
+        if let cachedImage = InMemoryImageCaching.publicCache.image(url: url) {
+            DispatchQueue.main.async {
+                self.imageView.image = cachedImage
+            }
+            return
+        }
         task = imageView.downloadImage(fromURL: url)
     }
 }

@@ -33,6 +33,8 @@ class IMDbAppDependencies {
     
     static let shared = IMDbAppDependencies()
     
+    private let inMemoryImageCache = InMemoryImageCaching.publicCache
+    
     private lazy var client: HTTPClient = {
         return URLSessionHTTPClient(session: URLSession.shared)
     }()
