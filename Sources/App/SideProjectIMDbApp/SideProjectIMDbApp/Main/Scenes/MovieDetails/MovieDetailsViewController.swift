@@ -76,6 +76,18 @@ class MovieDetailsViewController: UIViewController {
             imageView.image = UIImage(systemName: "film")
             return
         }
+        
+        do {
+            if let cachedImage = try OnDiskImageCaching.publicCache.image(url: imageURL) {
+                DispatchQueue.main.async {
+                    self.imageView.image = cachedImage
+                }
+                return
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+
         _ = imageView.downloadImage(fromURL: imageURL)
     }
     

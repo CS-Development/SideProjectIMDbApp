@@ -102,9 +102,11 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         guard let movie = viewModel.getMovieForIndexPath(indexPath: indexPath) else {
             return UICollectionViewCell()
         }
+        let url = URL(string: movie.image)
+        let convertedUrl = indexPath.section == 0 ? url?.convertToImdbImage192x264Url() : url?.convertToImdbImage384x528Url()
         let model = MovieCollectionViewCellViewModel(
             title: movie.title,
-            artworkURL: URL(string: movie.image)
+            artworkURL: convertedUrl
         )
         cell.configure(with: model)
         cell.backgroundColor = .lightGray

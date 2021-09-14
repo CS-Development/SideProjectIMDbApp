@@ -76,9 +76,52 @@ extension UIImageView {
             
             DispatchQueue.main.async {
                 strongSelf.image = image
+                
+                do {
+                   try OnDiskImageCaching.publicCache.cacheImage(image, url: url)
+                } catch {
+                    print(error.localizedDescription)
+                }
+                
             }
         }
         task.resume()
         return task
+    }
+}
+
+extension URL {
+    /// this utility convertion method works  only for imdb images  urls
+    func convertToImdbImageOriginalUrl() -> URL? {
+        var path = "https://imdb-api.com/images/original/" + self.lastPathComponent
+        guard let range = path.range(of: "._V1") else {
+            return nil
+        }
+        path = path.substring(to: range.lowerBound)
+        path.append("._V1_Ratio0.6791_AL_.jpg")
+        
+        return URL(string: path)
+    }
+    
+    func convertToImdbImage192x264Url() -> URL? {
+        var path = "https://imdb-api.com/images/192x264/" + self.lastPathComponent
+        guard let range = path.range(of: "._V1") else {
+            return nil
+        }
+        path = path.substring(to: range.lowerBound)
+        path.append("._V1_Ratio0.6791_AL_.jpg")
+        
+        return URL(string: path)
+    }
+    
+    func convertToImdbImage384x528Url() -> URL? {
+        var path = "https://imdb-api.com/images/384x528/" + self.lastPathComponent
+        guard let range = path.range(of: "._V1") else {
+            return nil
+        }
+        path = path.substring(to: range.lowerBound)
+        path.append("._V1_Ratio0.6791_AL_.jpg")
+        
+        return URL(string: path)
     }
 }
