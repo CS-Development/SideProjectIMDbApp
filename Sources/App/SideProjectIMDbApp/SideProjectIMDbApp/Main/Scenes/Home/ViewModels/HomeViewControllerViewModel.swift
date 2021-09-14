@@ -32,7 +32,7 @@ class HomeViewControllerViewModel {
                     self?.reloadCollectionView()
                     break
                 case .failure(let error):
-                    print("error")
+                    print("Failed to fetch most popular movies: \(error)")
                 }
             }
         }
@@ -45,7 +45,7 @@ class HomeViewControllerViewModel {
                     self?.reloadCollectionView()
                     break
                 case .failure(let error):
-                    print("error")
+                    print("Failed to fetch most popular tvs: \(error)")
                 }
             }
         }

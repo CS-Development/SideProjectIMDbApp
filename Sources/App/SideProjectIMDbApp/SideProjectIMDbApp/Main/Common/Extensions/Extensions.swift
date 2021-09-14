@@ -76,7 +76,13 @@ extension UIImageView {
             
             DispatchQueue.main.async {
                 strongSelf.image = image
-                InMemoryImageCaching.publicCache.cacheImage(image, url: url)
+                
+                do {
+                   try OnDiskImageCaching.publicCache.cacheImage(image, url: url)
+                } catch {
+                    print(error.localizedDescription)
+                }
+                
             }
         }
         task.resume()

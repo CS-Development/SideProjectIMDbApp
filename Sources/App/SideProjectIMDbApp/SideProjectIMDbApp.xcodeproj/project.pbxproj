@@ -28,6 +28,7 @@
 		2422BD6526AF34AF001417F4 /* IMDbApiModule.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2422BD6326AF34AF001417F4 /* IMDbApiModule.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2422BD6726AF3921001417F4 /* FakeIMDbManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2422BD6626AF3921001417F4 /* FakeIMDbManager.swift */; };
 		2459560C26EFCB3B0069B658 /* InMemoryImageCaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459560B26EFCB3B0069B658 /* InMemoryImageCaching.swift */; };
+		2459560E26EFD7470069B658 /* OnDiskImageCaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459560D26EFD7470069B658 /* OnDiskImageCaching.swift */; };
 		24F1EC8826DD566400D98A21 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F1EC8726DD566400D98A21 /* SearchViewModel.swift */; };
 		24F1EC8B26DD59DE00D98A21 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F1EC8A26DD59DE00D98A21 /* SearchResultsViewController.swift */; };
 		24F1EC8E26DD640C00D98A21 /* SearchResultDefaultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F1EC8D26DD640C00D98A21 /* SearchResultDefaultTableViewCell.swift */; };
@@ -93,6 +94,7 @@
 		2422BD6326AF34AF001417F4 /* IMDbApiModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = IMDbApiModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2422BD6626AF3921001417F4 /* FakeIMDbManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeIMDbManager.swift; sourceTree = "<group>"; };
 		2459560B26EFCB3B0069B658 /* InMemoryImageCaching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryImageCaching.swift; sourceTree = "<group>"; };
+		2459560D26EFD7470069B658 /* OnDiskImageCaching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDiskImageCaching.swift; sourceTree = "<group>"; };
 		24F1EC8726DD566400D98A21 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		24F1EC8A26DD59DE00D98A21 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		24F1EC8D26DD640C00D98A21 /* SearchResultDefaultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultDefaultTableViewCell.swift; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 			isa = PBXGroup;
 			children = (
 				2459560B26EFCB3B0069B658 /* InMemoryImageCaching.swift */,
+				2459560D26EFD7470069B658 /* OnDiskImageCaching.swift */,
 			);
 			path = Caching;
 			sourceTree = "<group>";
@@ -516,6 +519,7 @@
 				2415826A26D4184600D11676 /* Routing.swift in Sources */,
 				2408F65826CADBB700791DEF /* MainTabBarController.swift in Sources */,
 				2408F66626CAF1F900791DEF /* Extensions.swift in Sources */,
+				2459560E26EFD7470069B658 /* OnDiskImageCaching.swift in Sources */,
 				24FDD2D326AC491D007CE4FD /* AppDelegate.swift in Sources */,
 				2408F66426CAF05C00791DEF /* MovieCollectionViewCell.swift in Sources */,
 				2415826726D4116B00D11676 /* MovieDetailsViewControllerViewModel.swift in Sources */,

@@ -7,23 +7,25 @@
 
 import UIKit
 
+/// In memory caching is easy to implement and also quick, because it loads directly from RAM
 class InMemoryImageCaching {
     
     static let publicCache = InMemoryImageCaching()
     
-    private var cachedImages = [URL: UIImage]()
+    private var cachedImages = NSCache<NSURL, UIImage>()
     
-    private init() { }
+    private init() {
+    }
     
     public final func image(url: URL) -> UIImage? {
         
-        //TODO: lookup into the cache
-        //TODO: if found, return the image
-        return cachedImages[url]
+        // lookup into the cache
+        // if found, return the image
+        return cachedImages.object(forKey: url as NSURL)
     }
     
     public final func cacheImage(_ image: UIImage, url: URL) {
-        //TODO: Cache the image
-        cachedImages[url] = image
+        // Cache the image
+        cachedImages.setObject(image, forKey: url as NSURL)
     }
 }
