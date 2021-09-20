@@ -117,11 +117,13 @@ class IMDbAppDependencies {
     
     private func makeSearchViewController(manager: IMDbManagerProtocol) -> UIViewController {
         let viewModel = SearchViewModel(manager: manager)
-        let viewController = SearchViewController(viewModel: viewModel)
+        let router = SearchViewRouter()
+        let viewController = SearchViewController(viewModel: viewModel, router: router)
         viewController.title = "Search"
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.title = "Search"
         navigationController.tabBarItem.image = UIImage(systemName: "magnifyingglass")
+        router.navigationController = navigationController
         return navigationController
     }
     
@@ -139,8 +141,8 @@ class IMDbAppDependencies {
     
     //
     
-    func makeMovieDetailsViewController(for movie: MostPopularDataDetail) -> UIViewController {
-        let viewModel = MovieDetailsViewControllerViewModel(id: movie.id,
+    func makeMovieDetailsViewController(for movieId: String) -> UIViewController {
+        let viewModel = MovieDetailsViewControllerViewModel(id: movieId,
                                                             manager: imdbManager)
         let viewController = MovieDetailsViewController(viewModel: viewModel)
         viewModel.delegate = viewController

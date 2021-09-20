@@ -13,7 +13,7 @@ class HomeViewRouter: HomeViewRouting {
     var navigationController: UINavigationController?
     
     func routeToMovieDetails(for movie: MostPopularDataDetail) {
-        let vc = IMDbAppDependencies.shared.makeMovieDetailsViewController(for: movie )
+        let vc = IMDbAppDependencies.shared.makeMovieDetailsViewController(for: movie.id )
         navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -22,7 +22,7 @@ protocol HomeViewRouting: Routing {
 }
 
 protocol SearchViewRouting: Routing {
-    // route to somewhere
+    func routeToMovieDetails(for movie: SearchResult)
 }
 
 protocol ProfileViewRouting: Routing {
