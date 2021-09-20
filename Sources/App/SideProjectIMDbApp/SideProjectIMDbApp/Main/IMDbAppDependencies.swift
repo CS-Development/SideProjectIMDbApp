@@ -41,7 +41,7 @@ class IMDbAppDependencies {
     }()
     
     private lazy var service: IMDbApiServiceProtocol = {
-        let apiKey = "k_4olf5ls3"
+        let apiKey = "k_a1ew4rr2"//"k_4olf5ls3"
         return IMDbApiService(baseURL: URL(string: "https://imdb-api.com")!, client: client, apiKey: apiKey)
     }()
     
@@ -117,11 +117,13 @@ class IMDbAppDependencies {
     
     private func makeSearchViewController(manager: IMDbManagerProtocol) -> UIViewController {
         let viewModel = SearchViewModel(manager: manager)
-        let viewController = SearchViewController(viewModel: viewModel)
+        let router = SearchViewRouter()
+        let viewController = SearchViewController(viewModel: viewModel, router: router)
         viewController.title = "Search"
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.title = "Search"
         navigationController.tabBarItem.image = UIImage(systemName: "magnifyingglass")
+        router.navigationController = navigationController
         return navigationController
     }
     
@@ -139,9 +141,11 @@ class IMDbAppDependencies {
     
     //
     
-    func makeMovieDetailsViewController(for movie: MostPopularDataDetail) -> UIViewController {
-        let viewModel = MovieDetailsViewControllerViewModel(movie: movie)
+    func makeMovieDetailsViewController(for movieId: String) -> UIViewController {
+        let viewModel = MovieDetailsViewControllerViewModel(id: movieId,
+                                                            manager: imdbManager)
         let viewController = MovieDetailsViewController(viewModel: viewModel)
+        viewModel.delegate = viewController
         return viewController
     }
 }

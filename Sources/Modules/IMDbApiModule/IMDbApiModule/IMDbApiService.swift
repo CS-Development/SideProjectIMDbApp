@@ -19,12 +19,15 @@ public protocol IMDbApiServiceProtocol {
     func getBoxOfficeAllTime(completion: @escaping (Swift.Result<BoxOfficeAllTimeData, ServiceError>)->Void)
     func getNewMovies(completion: @escaping (Swift.Result<NewMovieData, ServiceError>)-> Void)
     
-    //MARK: - Search
+    // MARK: - Search
     func searchMovie(title: String, completion: @escaping (Swift.Result<SearchData, ServiceError>)-> Void)
+    
+    // MARK: - Title
+    func getTitle(for id: String, completion: @escaping (Swift.Result<TitleData, ServiceError>)-> Void )
 }
 
 public class IMDbApiService: IMDbApiServiceProtocol {
-   
+    
     private var baseURL: URL
     private var client: HTTPClient
     private var apiKey: String
@@ -90,6 +93,15 @@ public class IMDbApiService: IMDbApiServiceProtocol {
     //https://imdb-api.com/en/API/SearchMovie/k_12345678/Inception 2010
     public func searchMovie(title: String, completion: @escaping (Result<SearchData, ServiceError>) -> Void) {
         let url = baseURL.appendingPathComponent("API/SearchMovie").appendingPathComponent(apiKey).appendingPathComponent(title)
+        client.makeRequest(toURL: url, withHttpMethod: .get) { [weak self] result in
+            guard self != nil else {return}
+            completion(GenericDecoder.decodeResult(result: result))
+        }
+    }
+    
+    
+    public func getTitle(for id: String, completion: @escaping (Result<TitleData, ServiceError>) -> Void) {
+        let url = baseURL.appendingPathComponent("API/Title").appendingPathComponent(apiKey).appendingPathComponent(id)
         client.makeRequest(toURL: url, withHttpMethod: .get) { [weak self] result in
             guard self != nil else {return}
             completion(GenericDecoder.decodeResult(result: result))

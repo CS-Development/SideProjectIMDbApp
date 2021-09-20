@@ -9,7 +9,7 @@ import UIKit
 import IMDbApiModule
 
 protocol SearchResultsViewControllerDelegate: AnyObject {
-    func didTapResult(_ result: String)
+    func didTapResult(_ result: SearchResult)
 }
 
 class SearchResultsViewController: UIViewController {
@@ -77,6 +77,6 @@ extension SearchResultsViewController: UITableViewDelegate, UITableViewDataSourc
         tableView.deselectRow(at: indexPath, animated: true)
         
         //TODO: show the movie details
-        delegate?.didTapResult(results[indexPath.row].title)
+        delegate?.didTapResult(results[indexPath.row])
     }
 }

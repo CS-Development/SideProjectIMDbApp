@@ -11,6 +11,7 @@ import IMDbApiModule
 class SearchViewController: UIViewController {
     
     private let viewModel: SearchViewModel
+    private let router: SearchViewRouter
     
     private let searchController: UISearchController = {
         let vc = UISearchController(searchResultsController: SearchResultsViewController())
@@ -20,8 +21,9 @@ class SearchViewController: UIViewController {
         return vc
     }()
     
-    init(viewModel: SearchViewModel) {
+    init(viewModel: SearchViewModel, router: SearchViewRouter) {
         self.viewModel = viewModel
+        self.router = router
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -70,7 +72,8 @@ extension SearchViewController: UISearchBarDelegate {
 }
 
 extension SearchViewController: SearchResultsViewControllerDelegate {
-    func didTapResult(_ result: String) {
-        
+    func didTapResult(_ result: SearchResult) {
+        // route to movie details
+        router.routeToMovieDetails(for: result)
     }
 }

@@ -12,5 +12,8 @@ class SearchViewRouter: SearchViewRouting {
     
     var navigationController: UINavigationController?
 
-    // route to somewhere
+    func routeToMovieDetails(for movie: SearchResult) {
+        let vc = IMDbAppDependencies.shared.makeMovieDetailsViewController(for: movie.id )
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
