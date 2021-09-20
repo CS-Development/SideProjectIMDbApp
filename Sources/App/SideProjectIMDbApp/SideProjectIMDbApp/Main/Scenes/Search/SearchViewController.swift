@@ -71,6 +71,6 @@ extension SearchViewController: UISearchBarDelegate {
 
 extension SearchViewController: SearchResultsViewControllerDelegate {
     func didTapResult(_ result: String) {
-        
+        // route to movie details
     }
 }

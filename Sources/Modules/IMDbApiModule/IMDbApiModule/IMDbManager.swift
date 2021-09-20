@@ -18,9 +18,25 @@ public protocol IMDbManagerProtocol {
     func getNewMovies(completion: @escaping (NewMovieData)->Void)
     
     func searchMovie(title: String ,completion: @escaping (Result<SearchData, NetworkingServiceError>)-> Void)
+    
+    // MARK: - Title
+    func getTitle(for id: String, completion: @escaping (Swift.Result<TitleData, NetworkingServiceError>)-> Void )
 }
 
 public class IMDbManager: IMDbManagerProtocol {
+    
+    public func getTitle(for id: String, completion: @escaping (Result<TitleData, NetworkingServiceError>) -> Void) {
+        service.getTitle(for: id) { result in
+            switch result {
+            case let .failure(error):
+                print(error)
+                break
+            case .success(_):
+                completion(result)
+                break
+            }
+        }
+    }
     
     public func getBoxOffice(completion: @escaping (Result<BoxOfficeWeekendData, NetworkingServiceError>) -> Void) {
         service.getBoxOffice { result in

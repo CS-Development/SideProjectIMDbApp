@@ -7,7 +7,11 @@
 
 import UIKit
 
-class MovieDetailsViewController: UIViewController {
+protocol MovieDetailsDelegate: AnyObject {
+    func reloadData()
+}
+
+class MovieDetailsViewController: UIViewController, MovieDetailsDelegate {
     
     let viewModel: MovieDetailsViewControllerViewModel
     
@@ -26,6 +30,7 @@ class MovieDetailsViewController: UIViewController {
         label.backgroundColor = .gray
         label.textColor = .white
         label.font = .systemFont(ofSize: 18, weight: .bold)
+        label.text = "-"
         label.numberOfLines = 0
         return label
     }()
@@ -35,6 +40,7 @@ class MovieDetailsViewController: UIViewController {
         label.backgroundColor = .gray
         label.textColor = .white
         label.font = .systemFont(ofSize: 16, weight: .regular)
+        label.text = "-"
         label.numberOfLines = 0
         return label
     }()
@@ -43,6 +49,7 @@ class MovieDetailsViewController: UIViewController {
         let label = UILabel()
         label.textColor = .label
         label.font = .systemFont(ofSize: 20, weight: .regular)
+        label.text = "-"
         label.numberOfLines = 0
         return label
     }()
@@ -61,34 +68,40 @@ class MovieDetailsViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .systemBackground
-        title = viewModel.getTitle()
-        
+    
         view.addSubview(scrollView)
         scrollView.addSubview(imageView)
         scrollView.addSubview(titleLabel)
         scrollView.addSubview(descriptionLabel)
         scrollView.addSubview(crewLabel)
         
-        titleLabel.text = viewModel.getTitle()
-        descriptionLabel.text = viewModel.getTitle()
-        crewLabel.text = viewModel.getCrew()
-        guard let imageURL = viewModel.getImageUrl() else {
-            imageView.image = UIImage(systemName: "film")
-            return
-        }
-        
-        do {
-            if let cachedImage = try OnDiskImageCaching.publicCache.image(url: imageURL) {
-                DispatchQueue.main.async {
-                    self.imageView.image = cachedImage
-                }
+        viewModel.loadMovie()
+    }
+    
+    func reloadData() {
+        DispatchQueue.main.async {
+            self.title = self.viewModel.getTitle()
+            self.titleLabel.text = self.viewModel.getTitle()
+            self.descriptionLabel.text = self.viewModel.getTitle()
+            self.crewLabel.text = "-"//viewModel.getCrew()
+            guard let imageURL = self.viewModel.getImageUrl() else {
+                self.imageView.image = UIImage(systemName: "film")
                 return
             }
-        } catch {
-            print(error.localizedDescription)
-        }
+            
+            do {
+                if let cachedImage = try OnDiskImageCaching.publicCache.image(url: imageURL) {
+                    DispatchQueue.main.async {
+                        self.imageView.image = cachedImage
+                    }
+                    return
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
 
-        _ = imageView.downloadImage(fromURL: imageURL)
+            _ = self.imageView.downloadImage(fromURL: imageURL)
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -98,10 +111,10 @@ class MovieDetailsViewController: UIViewController {
         
         imageView.frame = CGRect(x: 0, y: 0, width: scrollView.width, height: scrollView.width)
         titleLabel.frame = CGRect(x: 10, y: imageView.bottom+10, width: scrollView.width-20, height: 44)
-        titleLabel.sizeToFit()
+        //titleLabel.sizeToFit()
         
         descriptionLabel.frame = CGRect(x: 10, y: titleLabel.bottom+10, width: scrollView.width-20, height: 200)
-        descriptionLabel.sizeToFit()
+        //descriptionLabel.sizeToFit()
         
         crewLabel.frame = CGRect(x: 10, y: descriptionLabel.bottom+40, width: scrollView.width-20, height: 200)
         crewLabel.sizeToFit()
