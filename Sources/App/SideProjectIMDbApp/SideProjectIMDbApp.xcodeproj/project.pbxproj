@@ -40,6 +40,7 @@
 		24FDD2EA26AC491F007CE4FD /* SideProjectIMDbAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FDD2E926AC491F007CE4FD /* SideProjectIMDbAppTests.swift */; };
 		24FDD2F526AC491F007CE4FD /* SideProjectIMDbAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FDD2F426AC491F007CE4FD /* SideProjectIMDbAppUITests.swift */; };
 		5289AE2726CD68D6003E1EC6 /* HomeViewControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289AE2626CD68D6003E1EC6 /* HomeViewControllerViewModel.swift */; };
+		52F0DE0426FF4E9F00D7B085 /* SearchResultDefaultTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F0DE0326FF4E9F00D7B085 /* SearchResultDefaultTableViewCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +113,7 @@
 		24FDD2F426AC491F007CE4FD /* SideProjectIMDbAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideProjectIMDbAppUITests.swift; sourceTree = "<group>"; };
 		24FDD2F626AC491F007CE4FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5289AE2626CD68D6003E1EC6 /* HomeViewControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllerViewModel.swift; sourceTree = "<group>"; };
+		52F0DE0326FF4E9F00D7B085 /* SearchResultDefaultTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultDefaultTableViewCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -311,6 +313,7 @@
 		24F1EC8926DD59C800D98A21 /* SearchResults */ = {
 			isa = PBXGroup;
 			children = (
+				52F0DE0226FF4E8700D7B085 /* ViewModels */,
 				24F1EC8C26DD63E000D98A21 /* Cells */,
 				24F1EC8A26DD59DE00D98A21 /* SearchResultsViewController.swift */,
 			);
@@ -374,6 +377,14 @@
 				24FDD2F626AC491F007CE4FD /* Info.plist */,
 			);
 			path = SideProjectIMDbAppUITests;
+			sourceTree = "<group>";
+		};
+		52F0DE0226FF4E8700D7B085 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				52F0DE0326FF4E9F00D7B085 /* SearchResultDefaultTableViewCellViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -510,6 +521,7 @@
 				2408F65D26CAE4EA00791DEF /* LoginViewController.swift in Sources */,
 				2415826E26D41F2000D11676 /* SearchViewRouter.swift in Sources */,
 				2408F65426CAD67B00791DEF /* IMDbAppDependencies.swift in Sources */,
+				52F0DE0426FF4E9F00D7B085 /* SearchResultDefaultTableViewCellViewModel.swift in Sources */,
 				2415826326D40F2100D11676 /* MovieDetailsViewController.swift in Sources */,
 				24FDD2D726AC491D007CE4FD /* HomeViewController.swift in Sources */,
 				2415826C26D41BE700D11676 /* HomeViewRouter.swift in Sources */,

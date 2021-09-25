@@ -20,6 +20,7 @@ class SearchResultsViewController: UIViewController {
         tableView.backgroundColor = .systemBackground
         tableView.register(SearchResultDefaultTableViewCell.self,
                            forCellReuseIdentifier: SearchResultDefaultTableViewCell.identifier)
+        
         tableView.isHidden = true
         return tableView
     }()
@@ -69,8 +70,13 @@ extension SearchResultsViewController: UITableViewDelegate, UITableViewDataSourc
                 for: indexPath) as? SearchResultDefaultTableViewCell else {
             return UITableViewCell()
         }
-        cell.configure(with: results[indexPath.row].title)
+        let model = SearchResultDefaultTableViewCellViewModel(title: results[indexPath.row].title)
+        cell.configure(with: model)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -41,7 +41,7 @@ class IMDbAppDependencies {
     }()
     
     private lazy var service: IMDbApiServiceProtocol = {
-        let apiKey = "k_a1ew4rr2"//"k_4olf5ls3"
+        let apiKey = "k_dwjhfmyh" //"k_a1ew4rr2"//"k_4olf5ls3"
         return IMDbApiService(baseURL: URL(string: "https://imdb-api.com")!, client: client, apiKey: apiKey)
     }()
     
