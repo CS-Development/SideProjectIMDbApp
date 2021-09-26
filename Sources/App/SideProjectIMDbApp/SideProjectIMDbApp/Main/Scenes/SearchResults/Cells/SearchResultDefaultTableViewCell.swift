@@ -40,8 +40,11 @@ class SearchResultDefaultTableViewCell: UITableViewCell {
         super.layoutSubviews()
         
         // set image view frame
+       // iconImageView.frame = CGRect(x: 4, y: contentView.center.y, width: 20, height: 80)
+        setImageAutolayout()
         // set label frame
-        label.frame = contentView.bounds
+      //  label.frame = CGRect(x: iconImageView.right + 4, y: 20, width: self.bounds.width - 20, height: 20)
+        setLabelAutolayout()
     }
     
     override func prepareForReuse() {
@@ -50,8 +53,21 @@ class SearchResultDefaultTableViewCell: UITableViewCell {
         label.text = nil
     }
     
-    func configure(with viewModel: String) {
-        label.text = viewModel
+    func configure(with viewModel: SearchResultDefaultTableViewCellViewModel) {
+        label.text = viewModel.title
 //        iconImageView.image = //load an image from the view model
+        self.iconImageView.image = UIImage(systemName: "film")
+    }
+    
+    private func setImageAutolayout(){
+        iconImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([iconImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor), iconImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 50), iconImageView.widthAnchor.constraint(equalToConstant: 20), iconImageView.heightAnchor.constraint(equalToConstant: 90)])
+    }
+    
+    private func setLabelAutolayout(){
+        label.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([label.topAnchor.constraint(equalTo: iconImageView.topAnchor, constant: 10),
+                                     label.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 50)])
     }
 }
