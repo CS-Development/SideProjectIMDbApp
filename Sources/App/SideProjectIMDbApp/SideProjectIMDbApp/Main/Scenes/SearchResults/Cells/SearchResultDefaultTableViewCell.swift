@@ -67,7 +67,7 @@ class SearchResultDefaultTableViewCell: UITableViewCell {
     
     private func setLabelAutolayout(){
         label.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([label.centerYAnchor.constraint(equalTo: contentView.centerYAnchor), label.trailingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 50), label.widthAnchor.constraint(equalToConstant: 20), label.heightAnchor.constraint(equalToConstant: 90)])
+        NSLayoutConstraint.activate([label.topAnchor.constraint(equalTo: iconImageView.topAnchor, constant: 10),
+                                     label.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 50)])
     }
 }
