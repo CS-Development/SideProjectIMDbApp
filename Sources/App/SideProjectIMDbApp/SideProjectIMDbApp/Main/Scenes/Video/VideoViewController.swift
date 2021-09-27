@@ -55,8 +55,8 @@ final class VideoViewController: UIViewController {
 extension VideoViewController {
     private func configureCollectionView() {
         view.addSubview(collectionView)
-        collectionView.register(MovieCollectionViewCell.self,
-                                forCellWithReuseIdentifier: MovieCollectionViewCell.identifier)
+        collectionView.register(VideoCollectionViewCell.self,
+                                forCellWithReuseIdentifier: VideoCollectionViewCell.identifier)
         collectionView.register(TitleHeaderCollectionReusableView.self,
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: TitleHeaderCollectionReusableView.identifier)
@@ -129,9 +129,9 @@ extension VideoViewController: UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: MovieCollectionViewCell.identifier,
+            withReuseIdentifier: VideoCollectionViewCell.identifier,
                 for: indexPath
-        ) as? MovieCollectionViewCell else {
+        ) as? VideoCollectionViewCell else {
             return UICollectionViewCell()
         }
         
