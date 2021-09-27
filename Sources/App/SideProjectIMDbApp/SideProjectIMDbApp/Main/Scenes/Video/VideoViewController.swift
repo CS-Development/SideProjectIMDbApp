@@ -9,8 +9,8 @@ import UIKit
 
 final class VideoViewController: UIViewController {
     
-    let headerTitles = ["Most Popular Movies",
-                        "Most Popular Tvs"
+    let headerTitles = ["Popular trailers",
+                        "Recent trailers"
                         ]
     
     let viewModel: VideoViewControllerViewModel
@@ -72,6 +72,20 @@ extension VideoViewController {
     
     private static func createSectionLayout(section: Int) -> NSCollectionLayoutSection {
         
+        let supplementaryViews = [
+            NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1),
+                    heightDimension: .absolute(50)
+                ),
+                elementKind: UICollectionView
+                    .elementKindSectionHeader,
+                alignment: .top
+            )
+        ]
+        
+        // Section 1
+        
         // Item
         let item = NSCollectionLayoutItem(
             layoutSize: NSCollectionLayoutSize(
@@ -95,6 +109,7 @@ extension VideoViewController {
         // Section (made by groups)
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .groupPaging
+        section.boundarySupplementaryItems = supplementaryViews
         return section
     }
 }
@@ -123,5 +138,19 @@ extension VideoViewController: UICollectionViewDelegate, UICollectionViewDataSou
         cell.backgroundColor = .lightGray
         return cell
         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard let header = collectionView.dequeueReusableSupplementaryView(
+                ofKind: kind,
+                withReuseIdentifier: TitleHeaderCollectionReusableView.identifier,
+                for: indexPath
+        ) as? TitleHeaderCollectionReusableView, kind == UICollectionView.elementKindSectionHeader else {
+            return UICollectionReusableView()
+        }
+        let section = indexPath.section
+        let title = headerTitles[section]
+        header.configure(with: title)
+        return header
     }
 }
