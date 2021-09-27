@@ -29,6 +29,7 @@
 		2422BD6726AF3921001417F4 /* FakeIMDbManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2422BD6626AF3921001417F4 /* FakeIMDbManager.swift */; };
 		2447468D27023A1000C35596 /* VideoViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447468C27023A1000C35596 /* VideoViewRouter.swift */; };
 		2447469027023A7100C35596 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447468F27023A7100C35596 /* VideoViewController.swift */; };
+		2447469427023E1400C35596 /* VideoViewControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447469327023E1400C35596 /* VideoViewControllerViewModel.swift */; };
 		2459560C26EFCB3B0069B658 /* InMemoryImageCaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459560B26EFCB3B0069B658 /* InMemoryImageCaching.swift */; };
 		2459560E26EFD7470069B658 /* OnDiskImageCaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459560D26EFD7470069B658 /* OnDiskImageCaching.swift */; };
 		24F1EC8826DD566400D98A21 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F1EC8726DD566400D98A21 /* SearchViewModel.swift */; };
@@ -98,6 +99,7 @@
 		2422BD6626AF3921001417F4 /* FakeIMDbManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeIMDbManager.swift; sourceTree = "<group>"; };
 		2447468C27023A1000C35596 /* VideoViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewRouter.swift; sourceTree = "<group>"; };
 		2447468F27023A7100C35596 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
+		2447469327023E1400C35596 /* VideoViewControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewControllerViewModel.swift; sourceTree = "<group>"; };
 		2459560B26EFCB3B0069B658 /* InMemoryImageCaching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryImageCaching.swift; sourceTree = "<group>"; };
 		2459560D26EFD7470069B658 /* OnDiskImageCaching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDiskImageCaching.swift; sourceTree = "<group>"; };
 		24F1EC8726DD566400D98A21 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
@@ -310,9 +312,26 @@
 		2447468E27023A5100C35596 /* Video */ = {
 			isa = PBXGroup;
 			children = (
+				2447469127023C8400C35596 /* ViewModels */,
+				2447469227023C8D00C35596 /* Views */,
 				2447468F27023A7100C35596 /* VideoViewController.swift */,
 			);
 			path = Video;
+			sourceTree = "<group>";
+		};
+		2447469127023C8400C35596 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				2447469327023E1400C35596 /* VideoViewControllerViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		2447469227023C8D00C35596 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		2459560A26EFCB1D0069B658 /* Caching */ = {
@@ -538,6 +557,7 @@
 				2408F65426CAD67B00791DEF /* IMDbAppDependencies.swift in Sources */,
 				52F0DE0426FF4E9F00D7B085 /* SearchResultDefaultTableViewCellViewModel.swift in Sources */,
 				2415826326D40F2100D11676 /* MovieDetailsViewController.swift in Sources */,
+				2447469427023E1400C35596 /* VideoViewControllerViewModel.swift in Sources */,
 				24FDD2D726AC491D007CE4FD /* HomeViewController.swift in Sources */,
 				2415826C26D41BE700D11676 /* HomeViewRouter.swift in Sources */,
 				24F1EC8826DD566400D98A21 /* SearchViewModel.swift in Sources */,

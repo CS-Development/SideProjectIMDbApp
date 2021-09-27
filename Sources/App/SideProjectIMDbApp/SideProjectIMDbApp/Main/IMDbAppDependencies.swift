@@ -153,11 +153,14 @@ class IMDbAppDependencies {
     // MARK: - Video Controller
     
     func makeVideoViewController() -> UIViewController {
-        let viewController = VideoViewController()
+        let viewModel = VideoViewControllerViewModel()
+        let router = VideoViewRouter()
+        let viewController = VideoViewController(viewModel: viewModel, router: router)
         viewController.title = "Video"
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.title = "Video"
         navigationController.tabBarItem.image = UIImage(systemName: "play.circle")
+        router.navigationController = navigationController
         return navigationController
     }
 }

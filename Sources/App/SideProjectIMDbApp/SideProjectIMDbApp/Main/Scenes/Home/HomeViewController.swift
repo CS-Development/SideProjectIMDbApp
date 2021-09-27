@@ -8,11 +8,11 @@
 import UIKit
 import IMDbApiModule
 
-let headerTitles = ["Most Popular Movies",
-                    "Most Popular Tvs"
-                    ]
-
 class HomeViewController: UIViewController {
+    
+    let headerTitles = ["Most Popular Movies",
+                        "Most Popular Tvs"
+                        ]
     
     let viewModel: HomeViewControllerViewModel
     let router: HomeViewRouting
