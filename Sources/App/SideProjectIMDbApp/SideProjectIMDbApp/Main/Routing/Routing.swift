@@ -28,3 +28,7 @@ protocol SearchViewRouting: Routing {
 protocol ProfileViewRouting: Routing {
     // route to somewhere
 }
+
+protocol VideoViewRouting: Routing {
+    // route to somewhere
+}

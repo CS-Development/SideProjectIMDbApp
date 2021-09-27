@@ -80,9 +80,10 @@ class IMDbAppDependencies {
         let homeVC = makeHomeViewController()
         let searchVC = makeSearchViewController(manager: manager)
         let profileVC = makeProfileViewController(manager: manager)
+        let videoVC = makeVideoViewController()
         
         let tabController = MainTabBarController(
-            viewControllers: [homeVC, searchVC, profileVC])
+            viewControllers: [homeVC, searchVC, videoVC, profileVC])
         return tabController
     }
     
@@ -134,7 +135,7 @@ class IMDbAppDependencies {
         viewController.title = "Profile"
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.title = "Profile"
-        navigationController.tabBarItem.image = UIImage(systemName: "contacts")
+        navigationController.tabBarItem.image = UIImage(systemName: "person.crop.circle")
         return navigationController
         //return ProfileViewController(manager: manager)
     }
@@ -147,6 +148,20 @@ class IMDbAppDependencies {
         let viewController = MovieDetailsViewController(viewModel: viewModel)
         viewModel.delegate = viewController
         return viewController
+    }
+    
+    // MARK: - Video Controller
+    
+    func makeVideoViewController() -> UIViewController {
+        let viewModel = VideoViewControllerViewModel(manager: imdbManager)
+        let router = VideoViewRouter()
+        let viewController = VideoViewController(viewModel: viewModel, router: router)
+        viewController.title = "Video"
+        let navigationController = UINavigationController(rootViewController: viewController)
+        navigationController.title = "Video"
+        navigationController.tabBarItem.image = UIImage(systemName: "play.circle")
+        router.navigationController = navigationController
+        return navigationController
     }
 }
 

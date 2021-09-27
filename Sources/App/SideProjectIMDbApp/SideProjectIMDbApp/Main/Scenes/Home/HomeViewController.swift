@@ -8,11 +8,11 @@
 import UIKit
 import IMDbApiModule
 
-let headerTitles = ["Most Popular Movies",
-                    "Most Popular Tvs"
-                    ]
-
 class HomeViewController: UIViewController {
+
+    let headerTitles = ["Most Popular Movies",
+                        "Most Popular Tvs"
+                        ]
     
     let viewModel: HomeViewControllerViewModel
     let router: HomeViewRouting
@@ -50,6 +50,16 @@ class HomeViewController: UIViewController {
         viewModel.getData()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        collectionView.frame = view.bounds
+//        setCollectionViewLayout(collectionView: collectionView)
+    }
+}
+
+// MARK: Collection View configuration methods
+extension HomeViewController {
+    
     private func configureCollectionView() {
         view.addSubview(collectionView)
         collectionView.register(MovieCollectionViewCell.self,
@@ -62,34 +72,29 @@ class HomeViewController: UIViewController {
         collectionView.dataSource = self
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        collectionView.frame = view.bounds
-//        setCollectionViewLayout(collectionView: collectionView)
-        }
-    }
-        
-    func setCollectionViewLayout(collectionView: UICollectionView){
+    func setCollectionViewLayout(collectionView: UICollectionView) {
             if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout{
                 layout.minimumLineSpacing = 10
                 layout.minimumInteritemSpacing = 10
                 layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
                 let size = CGSize(width:(collectionView.bounds.width-30)/2, height: 250)
                 layout.itemSize = size
-        }
+            }
     }
+}
 
-
+// MARK: Collection View Delegate & Data Source methods
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        return headerTitles.count
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let homeSectionType = HomeSectionTypes(rawValue: section) else {
-            return 0
-        }
-        return viewModel.numberOfItemsInSection(section: homeSectionType)
+//        guard let homeSectionType = HomeSectionTypes(rawValue: section) else {
+//            return 0
+//        }
+        return viewModel.numberOfItemsInSection(section: section)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

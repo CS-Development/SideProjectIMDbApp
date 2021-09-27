@@ -51,8 +51,10 @@ class HomeViewControllerViewModel {
         }
     }
     
-    func numberOfItemsInSection(section: HomeSectionTypes) -> Int {
-        switch section {
+    func numberOfItemsInSection(section: Int) -> Int {
+        guard let homeSection = HomeSectionTypes(rawValue:
+                                                    section) else { return 0 }
+        switch homeSection {
         case .mostPopularMovies:
             return mostPopularMovies.count
         case .mostPopularTvs:
