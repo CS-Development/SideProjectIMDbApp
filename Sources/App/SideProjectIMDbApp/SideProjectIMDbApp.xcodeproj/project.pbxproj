@@ -31,6 +31,7 @@
 		2447469027023A7100C35596 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447468F27023A7100C35596 /* VideoViewController.swift */; };
 		2447469427023E1400C35596 /* VideoViewControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447469327023E1400C35596 /* VideoViewControllerViewModel.swift */; };
 		24474696270246B300C35596 /* VideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24474695270246B300C35596 /* VideoCollectionViewCell.swift */; };
+		2447469827024CAE00C35596 /* VideoCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447469727024CAE00C35596 /* VideoCollectionViewCellViewModel.swift */; };
 		2459560C26EFCB3B0069B658 /* InMemoryImageCaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459560B26EFCB3B0069B658 /* InMemoryImageCaching.swift */; };
 		2459560E26EFD7470069B658 /* OnDiskImageCaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459560D26EFD7470069B658 /* OnDiskImageCaching.swift */; };
 		24F1EC8826DD566400D98A21 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F1EC8726DD566400D98A21 /* SearchViewModel.swift */; };
@@ -102,6 +103,7 @@
 		2447468F27023A7100C35596 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		2447469327023E1400C35596 /* VideoViewControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewControllerViewModel.swift; sourceTree = "<group>"; };
 		24474695270246B300C35596 /* VideoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCell.swift; sourceTree = "<group>"; };
+		2447469727024CAE00C35596 /* VideoCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		2459560B26EFCB3B0069B658 /* InMemoryImageCaching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryImageCaching.swift; sourceTree = "<group>"; };
 		2459560D26EFD7470069B658 /* OnDiskImageCaching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDiskImageCaching.swift; sourceTree = "<group>"; };
 		24F1EC8726DD566400D98A21 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 			isa = PBXGroup;
 			children = (
 				2447469327023E1400C35596 /* VideoViewControllerViewModel.swift */,
+				2447469727024CAE00C35596 /* VideoCollectionViewCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -575,6 +578,7 @@
 				2408F66426CAF05C00791DEF /* MovieCollectionViewCell.swift in Sources */,
 				2415826726D4116B00D11676 /* MovieDetailsViewControllerViewModel.swift in Sources */,
 				2408F66126CAE51600791DEF /* ProfileViewController.swift in Sources */,
+				2447469827024CAE00C35596 /* VideoCollectionViewCellViewModel.swift in Sources */,
 				24F1EC8E26DD640C00D98A21 /* SearchResultDefaultTableViewCell.swift in Sources */,
 				2408F66926CAF67C00791DEF /* MovieCollectionViewCellViewModel.swift in Sources */,
 				24FDD2D526AC491D007CE4FD /* SceneDelegate.swift in Sources */,

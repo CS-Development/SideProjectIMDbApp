@@ -153,7 +153,7 @@ class IMDbAppDependencies {
     // MARK: - Video Controller
     
     func makeVideoViewController() -> UIViewController {
-        let viewModel = VideoViewControllerViewModel()
+        let viewModel = VideoViewControllerViewModel(manager: imdbManager)
         let router = VideoViewRouter()
         let viewController = VideoViewController(viewModel: viewModel, router: router)
         viewController.title = "Video"

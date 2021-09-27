@@ -40,8 +40,13 @@ final class VideoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        
+        viewModel.reloadCollectionView = { [weak self] in
+            DispatchQueue.main.async {
+                self?.collectionView.reloadData()
+            }
+        }
         configureCollectionView()
+        viewModel.getData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -123,7 +128,7 @@ extension VideoViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return viewModel.numberOfItemsInSection(section: section)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -134,7 +139,16 @@ extension VideoViewController: UICollectionViewDelegate, UICollectionViewDataSou
         ) as? VideoCollectionViewCell else {
             return UICollectionViewCell()
         }
+        guard let movie = viewModel.getMovieForIndexPath(indexPath: indexPath) else {
+            return UICollectionViewCell()
+        }
+        let url = URL(string: movie.image)
+        let convertedUrl = indexPath.section == 0 ? url?.convertToImdbImage192x264Url() : url?.convertToImdbImage384x528Url()
         
+        let model = VideoCollectionViewCellViewModel(title: movie.title,
+                                                     artworkURL: convertedUrl,
+                                                     length: "1:01")
+        cell.configure(with: model)
         cell.backgroundColor = .lightGray
         return cell
         

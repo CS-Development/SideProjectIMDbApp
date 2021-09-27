@@ -91,10 +91,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         return headerTitles.count
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let homeSectionType = HomeSectionTypes(rawValue: section) else {
-            return 0
-        }
-        return viewModel.numberOfItemsInSection(section: homeSectionType)
+//        guard let homeSectionType = HomeSectionTypes(rawValue: section) else {
+//            return 0
+//        }
+        return viewModel.numberOfItemsInSection(section: section)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
