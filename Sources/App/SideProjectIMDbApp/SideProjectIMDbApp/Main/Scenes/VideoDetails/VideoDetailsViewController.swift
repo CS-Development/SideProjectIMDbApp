@@ -14,9 +14,11 @@ final class VideoDetailsViewController: UIViewController {
     private var router: VideoViewRouter
     
     // UI
-    let scrollView = UIScrollView(frame: .zero)
+    lazy private var scrollView: UIScrollView = {
+        UIScrollView(frame: .zero)
+    }()
     
-    private let imageView: UIImageView = {
+    lazy private var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "photo")
         imageView.contentMode = .scaleAspectFill

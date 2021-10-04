@@ -31,5 +31,5 @@ protocol ProfileViewRouting: Routing {
 
 protocol VideoViewRouting: Routing {
     // route to somewhere
-    func routeToVideoDetails()
+    func routeToVideoDetails(for movie: MostPopularDataDetail)
 }

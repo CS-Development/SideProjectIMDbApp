@@ -165,15 +165,28 @@ class IMDbAppDependencies {
     }
     
     // MARK: - Video Details Controller
-    func makeVideoDetailsViewController() -> UIViewController {
-        let viewModel = VideoDetailsViewModel()
-        let router = VideoViewRouter()
-        let viewController = VideoDetailsViewController(viewModel: viewModel, router: router)
-        viewController.title = "Video Details"
+    func makeVideoDetailsViewController(for movie: MostPopularDataDetail, completion: @escaping (UIViewController?)->Void) {
+        // fetch the trailer data
+        imdbManager.getTrailer(for: movie.id) { result in
+            switch result {
+            case .success(let trailerData):
+                
+                DispatchQueue.main.async {
+                    let viewModel = VideoDetailsViewModel(movie: movie, trailer: trailerData)
+                    let router = VideoViewRouter()
+                    let viewController = VideoDetailsViewController(viewModel: viewModel, router: router)
+                    viewController.title = "Video Details"
 
-        //navigationController.title = "Video"
-        //router.navigationController = navigationController
-        return viewController
+                    //navigationController.title = "Video"
+                    //router.navigationController = navigationController
+                    completion(viewController)
+                }
+                
+            case .failure(_):
+                print("Failed to get trailer")
+                completion(nil)
+            }
+        }
     }
 }
 

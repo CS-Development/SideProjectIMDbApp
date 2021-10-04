@@ -6,10 +6,26 @@
 //
 
 import Foundation
+import IMDbApiModule
 
-struct VideoDetailsViewModel {
+//MVVM
+
+//Model -> ViewModel -> View
+
+struct VideoDetailsViewModel { // viewModel is a converter from Model's Infos to View's infos
     
-    var videoPreviewUrl: String = ""
+    private let movie: MostPopularDataDetail
+    private let trailer: TrailerData
     
+    init(movie: MostPopularDataDetail, trailer: TrailerData) {
+        self.movie = movie
+        self.trailer = trailer
+    }
+    
+    // presentation properties
+    var videoPreviewUrl: String {
+        trailer.thumbnailUrl
+    }
+
     var videoStatus: String = "NOW PLAYING"
 }
