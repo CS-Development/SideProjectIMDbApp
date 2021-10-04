@@ -28,4 +28,11 @@ struct VideoDetailsViewModel { // viewModel is a converter from Model's Infos to
     }
 
     var videoStatus: String = "NOW PLAYING"
+    
+    func getImageUrl() -> URL? {
+
+        let url = URL(string: videoPreviewUrl)
+        
+        return url
+    }
 }

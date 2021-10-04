@@ -55,6 +55,8 @@ final class VideoDetailsViewController: UIViewController {
         scrollView.addSubview(imageView)
         scrollView.addSubview(titleLabel)
         
+        loadTrailerPreview()
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -62,7 +64,27 @@ final class VideoDetailsViewController: UIViewController {
         
         scrollView.frame = view.bounds
         
-        imageView.frame = CGRect(x: 0, y: 0, width: scrollView.width, height: scrollView.width)
+        imageView.frame = CGRect(x: 0, y: 0, width: scrollView.width, height: scrollView.width * 9/16)
         titleLabel.frame = CGRect(x: 10, y: imageView.bottom+10, width: scrollView.width-20, height: 44)
+    }
+    
+    private func loadTrailerPreview() {
+        guard let imageURL = self.viewModel.getImageUrl() else {
+            self.imageView.image = UIImage(systemName: "film")
+            return
+        }
+        
+        do {
+            if let cachedImage = try OnDiskImageCaching.publicCache.image(url: imageURL) {
+                DispatchQueue.main.async {
+                    self.imageView.image = cachedImage
+                }
+                return
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+
+        _ = self.imageView.downloadImage(fromURL: imageURL)
     }
 }
