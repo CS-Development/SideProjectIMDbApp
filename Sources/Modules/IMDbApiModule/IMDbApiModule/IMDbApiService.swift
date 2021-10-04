@@ -24,6 +24,9 @@ public protocol IMDbApiServiceProtocol {
     
     // MARK: - Title
     func getTitle(for id: String, completion: @escaping (Swift.Result<TitleData, ServiceError>)-> Void )
+    
+    // MARK: - Trailer
+    func getTrailer(for id: String, completion: @escaping (Swift.Result<TrailerData, ServiceError>)-> Void )
 }
 
 public class IMDbApiService: IMDbApiServiceProtocol {
@@ -108,7 +111,13 @@ public class IMDbApiService: IMDbApiServiceProtocol {
         }
     }
     
- 
+    public func getTrailer(for id: String, completion: @escaping (Result<TrailerData, ServiceError>) -> Void) {
+        let url = baseURL.appendingPathComponent("API/Trailer").appendingPathComponent(apiKey).appendingPathComponent(id)
+        client.makeRequest(toURL: url, withHttpMethod: .get) { [weak self] result in
+            guard self != nil else {return}
+            completion(GenericDecoder.decodeResult(result: result))
+        }
+    }
     
     
 }

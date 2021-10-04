@@ -41,7 +41,7 @@ class IMDbAppDependencies {
     }()
     
     private lazy var service: IMDbApiServiceProtocol = {
-        let apiKey = "k_a1ew4rr2"//"k_4olf5ls3"
+        let apiKey = "k_4olf5ls3" //"k_a1ew4rr2"//"k_4olf5ls3"
         return IMDbApiService(baseURL: URL(string: "https://imdb-api.com")!, client: client, apiKey: apiKey)
     }()
     
@@ -162,6 +162,31 @@ class IMDbAppDependencies {
         navigationController.tabBarItem.image = UIImage(systemName: "play.circle")
         router.navigationController = navigationController
         return navigationController
+    }
+    
+    // MARK: - Video Details Controller
+    func makeVideoDetailsViewController(for movie: MostPopularDataDetail, completion: @escaping (UIViewController?)->Void) {
+        // fetch the trailer data
+        imdbManager.getTrailer(for: movie.id) { result in
+            switch result {
+            case .success(let trailerData):
+                
+                DispatchQueue.main.async {
+                    let viewModel = VideoDetailsViewModel(movie: movie, trailer: trailerData)
+                    let router = VideoViewRouter()
+                    let viewController = VideoDetailsViewController(viewModel: viewModel, router: router)
+                    viewController.title = "Video Details"
+
+                    //navigationController.title = "Video"
+                    //router.navigationController = navigationController
+                    completion(viewController)
+                }
+                
+            case .failure(_):
+                print("Failed to get trailer")
+                completion(nil)
+            }
+        }
     }
 }
 

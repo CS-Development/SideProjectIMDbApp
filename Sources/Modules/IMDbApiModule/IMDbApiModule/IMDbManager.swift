@@ -21,6 +21,9 @@ public protocol IMDbManagerProtocol {
     
     // MARK: - Title
     func getTitle(for id: String, completion: @escaping (Swift.Result<TitleData, NetworkingServiceError>)-> Void )
+    
+    // MARK: - Trailer
+    func getTrailer(for id: String, completion: @escaping (Swift.Result<TrailerData, NetworkingServiceError>)-> Void )
 }
 
 public class IMDbManager: IMDbManagerProtocol {
@@ -122,6 +125,18 @@ public class IMDbManager: IMDbManagerProtocol {
         }
     }
     
+    public func getTrailer(for id: String, completion: @escaping (Result<TrailerData, NetworkingServiceError>) -> Void) {
+        service.getTrailer(for: id) { (result) in
+            switch result {
+            case let .failure(error):
+                print(error)
+                break
+            case .success(_):
+                completion(result)
+                break
+            }
+        }
+    }
     
     
     

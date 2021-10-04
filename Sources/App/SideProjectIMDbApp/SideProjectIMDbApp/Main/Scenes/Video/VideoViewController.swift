@@ -167,4 +167,16 @@ extension VideoViewController: UICollectionViewDelegate, UICollectionViewDataSou
         header.configure(with: title)
         return header
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        
+        guard let movie = viewModel.getMovieForIndexPath(indexPath: indexPath) else {
+            return
+        }
+        
+        //route to the video details vc
+        router.routeToVideoDetails(for: movie)
+        
+    }
 }
