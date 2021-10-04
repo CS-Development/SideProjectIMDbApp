@@ -7,6 +7,9 @@
 
 import Foundation
 
-class VideoDetailsViewModel {
+struct VideoDetailsViewModel {
     
+    var videoPreviewUrl: String = ""
+    
+    var videoStatus: String = "NOW PLAYING"
 }

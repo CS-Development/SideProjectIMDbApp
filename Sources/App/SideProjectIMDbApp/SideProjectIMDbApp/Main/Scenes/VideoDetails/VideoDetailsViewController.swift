@@ -24,11 +24,11 @@ final class VideoDetailsViewController: UIViewController {
         return imageView
     }()
     
-    private let titleLabel: UILabel = {
+    lazy private var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .secondaryLabel
         label.font = .systemFont(ofSize: 18, weight: .bold)
-        label.text = "NOW PLAYING"
+        label.text = viewModel.videoStatus
         label.numberOfLines = 0
         return label
     }()
