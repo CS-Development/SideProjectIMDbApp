@@ -7,6 +7,8 @@
 
 import Foundation
 import UIKit
+import AVFoundation
+import SafariServices
 
 final class VideoDetailsViewController: UIViewController {
     
@@ -18,13 +20,25 @@ final class VideoDetailsViewController: UIViewController {
         UIScrollView(frame: .zero)
     }()
     
+    
+    /////////////
+    // TRAILER VIEW
+    private var player: AVPlayer?
+    private var playerLayer = AVPlayerLayer()
+    
+    
     lazy private var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "photo")
         imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
+        imageView.isUserInteractionEnabled = true
         return imageView
     }()
+    
+    
+    /////////////
+    
     
     lazy private var titleLabel: UILabel = {
         let label = UILabel()
@@ -54,10 +68,34 @@ final class VideoDetailsViewController: UIViewController {
         view.addSubview(scrollView)
         scrollView.addSubview(imageView)
         scrollView.addSubview(titleLabel)
-        
+        imageView.layer.addSublayer(playerLayer)
         loadTrailerPreview()
         
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(playTrailer))
+        tapGesture.numberOfTapsRequired = 1
+        tapGesture.numberOfTouchesRequired = 1
+        imageView.addGestureRecognizer(tapGesture)
     }
+    
+    @objc private func playWebTrailer() {
+        guard let url = viewModel.getTrailerUrl() else { return }
+        
+        let vc = SFSafariViewController(url: url)
+        present(vc, animated: true)
+    }
+    
+    @objc private func playTrailer() {
+        print("playTrailer")
+        //guard let url = viewModel.getTrailerUrl() else { return }
+        guard let url = URL(string: "https://www.rmp-streaming.com/media/big-buck-bunny-360p.mp4") else {
+            return
+        }
+        player = AVPlayer(url: url)
+        playerLayer.player = player
+        //playerLayer.player?.volume = 0
+        playerLayer.player?.play()
+    }
+    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -66,6 +104,8 @@ final class VideoDetailsViewController: UIViewController {
         
         imageView.frame = CGRect(x: 0, y: 0, width: scrollView.width, height: scrollView.width * 9/16)
         titleLabel.frame = CGRect(x: 10, y: imageView.bottom+10, width: scrollView.width-20, height: 44)
+        
+        playerLayer.frame = imageView.frame
     }
     
     private func loadTrailerPreview() {
