@@ -163,6 +163,18 @@ class IMDbAppDependencies {
         router.navigationController = navigationController
         return navigationController
     }
+    
+    // MARK: - Video Details Controller
+    func makeVideoDetailsViewController() -> UIViewController {
+        let viewModel = VideoDetailsViewModel()
+        let router = VideoViewRouter()
+        let viewController = VideoDetailsViewController(viewModel: viewModel, router: router)
+        viewController.title = "Video Details"
+
+        //navigationController.title = "Video"
+        //router.navigationController = navigationController
+        return viewController
+    }
 }
 
 

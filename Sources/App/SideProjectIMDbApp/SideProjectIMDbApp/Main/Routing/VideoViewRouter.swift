@@ -12,5 +12,10 @@ class VideoViewRouter: VideoViewRouting {
     
     var navigationController: UINavigationController?
 
-    // route to somewhere
+    // route to video details screen
+    func routeToVideoDetails() {
+        let vc = IMDbAppDependencies.shared.makeVideoDetailsViewController()
+        navigationController?.show(vc, sender: self)
+    }
+    
 }
