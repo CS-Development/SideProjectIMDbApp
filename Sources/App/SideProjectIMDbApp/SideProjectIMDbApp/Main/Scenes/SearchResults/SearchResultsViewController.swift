@@ -70,7 +70,10 @@ extension SearchResultsViewController: UITableViewDelegate, UITableViewDataSourc
                 for: indexPath) as? SearchResultDefaultTableViewCell else {
             return UITableViewCell()
         }
-        let model = SearchResultDefaultTableViewCellViewModel(title: results[indexPath.row].title)
+        let movie = results[indexPath.row]
+        let url = URL(string: movie.image)
+        let convertedUrl = url?.convertToImdbImage384x528Url()
+        let model = SearchResultDefaultTableViewCellViewModel(title: results[indexPath.row].title, artworkURL: convertedUrl)
         cell.configure(with: model)
         return cell
     }
