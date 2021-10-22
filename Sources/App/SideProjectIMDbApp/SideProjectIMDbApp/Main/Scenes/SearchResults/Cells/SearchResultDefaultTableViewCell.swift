@@ -10,7 +10,7 @@ import UIKit
 class SearchResultDefaultTableViewCell: UITableViewCell {
 
     static let identifier = "SearchResultDefaultTableViewCell"
-    
+    var task: URLSessionDataTask?
     private let label: UILabel = {
         let label = UILabel()
         label.textColor = .label
@@ -52,12 +52,25 @@ class SearchResultDefaultTableViewCell: UITableViewCell {
         iconImageView.image = nil
         label.text = nil
     }
+
     
     func configure(with viewModel: SearchResultDefaultTableViewCellViewModel) {
         label.text = viewModel.title
-//        iconImageView.image = //load an image from the view model
-        self.iconImageView.image = UIImage(systemName: "film")
+        guard let url = viewModel.artworkURL else { return }
+        
+        do {
+            if let cachedImage = try OnDiskImageCaching.publicCache.image(url: url) {
+                DispatchQueue.main.async {
+                    self.iconImageView.image = cachedImage
+                }
+                return
+            }
+        } catch {
+        }
+        
+        task = iconImageView.downloadImage(fromURL: url)
     }
+    
     
     private func setImageAutolayout(){
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
