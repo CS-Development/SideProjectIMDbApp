@@ -7,6 +7,8 @@
 
 import Foundation
 struct SearchResultDefaultTableViewCellViewModel {
-    let title: String
+    let id: String
+    let resultType: String
     let artworkURL: URL?
+    let title: String
 }

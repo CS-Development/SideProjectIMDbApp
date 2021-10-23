@@ -23,17 +23,10 @@ class SearchResultDefaultTableViewCell: UITableViewCell {
         let label = UILabel()
         label.textColor = .label
         label.numberOfLines = 1
-        label.text = "Actor"
+   
         return label
     }()
     
-    private let yearLbl: UILabel = {
-        let label = UILabel()
-        label.textColor = .label
-        label.numberOfLines = 1
-        label.text = "Year"
-        return label
-    }()
     
     private let iconImageView: UIImageView = {
         let  imageView = UIImageView()
@@ -46,7 +39,6 @@ class SearchResultDefaultTableViewCell: UITableViewCell {
         contentView.addSubview(label)
         contentView.addSubview(iconImageView)
         contentView.addSubview(actorLbl)
-        contentView.addSubview(yearLbl)
         contentView.clipsToBounds = true
         accessoryType = .disclosureIndicator
     }
@@ -60,16 +52,13 @@ class SearchResultDefaultTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        // set image view frame
-       // iconImageView.frame = CGRect(x: 4, y: contentView.center.y, width: 20, height: 80)
+
         setImageAutolayout()
-        // set label frame
-      //  label.frame = CGRect(x: iconImageView.right + 4, y: 20, width: self.bounds.width - 20, height: 20)
+
         setLabelAutolayout()
         
         setActorLblAutolayout()
         
-        setYearLblAutolayout()
     }
     
     override func prepareForReuse() {
@@ -96,22 +85,13 @@ class SearchResultDefaultTableViewCell: UITableViewCell {
           actorLbl.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 30)
         ])
     }
-    
-    
-    
-    private func setYearLblAutolayout(){
-        yearLbl.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            yearLbl.topAnchor.constraint(equalTo: actorLbl.bottomAnchor, constant: 5),
-          yearLbl.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 30)
-        ])
-    }
-    
+   
 }
 
 extension SearchResultDefaultTableViewCell {
     func configure(with viewModel: SearchResultDefaultTableViewCellViewModel) {
         label.text = viewModel.title
+        actorLbl.text = viewModel.resultType
         guard let url = viewModel.artworkURL else { return }
         
         do {
