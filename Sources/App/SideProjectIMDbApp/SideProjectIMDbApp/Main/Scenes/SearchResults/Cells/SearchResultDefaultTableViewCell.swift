@@ -11,12 +11,22 @@ class SearchResultDefaultTableViewCell: UITableViewCell {
 
     static let identifier = "SearchResultDefaultTableViewCell"
     var task: URLSessionDataTask?
+    
     private let label: UILabel = {
         let label = UILabel()
         label.textColor = .label
         label.numberOfLines = 1
         return label
     }()
+    
+    private let actorLbl: UILabel = {
+        let label = UILabel()
+        label.textColor = .label
+        label.numberOfLines = 1
+   
+        return label
+    }()
+    
     
     private let iconImageView: UIImageView = {
         let  imageView = UIImageView()
@@ -28,6 +38,7 @@ class SearchResultDefaultTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(label)
         contentView.addSubview(iconImageView)
+        contentView.addSubview(actorLbl)
         contentView.clipsToBounds = true
         accessoryType = .disclosureIndicator
     }
@@ -36,15 +47,18 @@ class SearchResultDefaultTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        // set image view frame
-       // iconImageView.frame = CGRect(x: 4, y: contentView.center.y, width: 20, height: 80)
+
         setImageAutolayout()
-        // set label frame
-      //  label.frame = CGRect(x: iconImageView.right + 4, y: 20, width: self.bounds.width - 20, height: 20)
+
         setLabelAutolayout()
+        
+        setActorLblAutolayout()
+        
     }
     
     override func prepareForReuse() {
@@ -52,10 +66,32 @@ class SearchResultDefaultTableViewCell: UITableViewCell {
         iconImageView.image = nil
         label.text = nil
     }
-
+    private func setImageAutolayout(){
+        iconImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([iconImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor), iconImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 50), iconImageView.widthAnchor.constraint(equalToConstant: 20), iconImageView.heightAnchor.constraint(equalToConstant: 80)])
+    }
     
+    private func setLabelAutolayout(){
+        label.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([label.topAnchor.constraint(equalTo: iconImageView.topAnchor, constant: 5),
+                                     label.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 30)])
+    }
+    
+    private func setActorLblAutolayout(){
+        actorLbl.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+          actorLbl.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 5),
+          actorLbl.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 30)
+        ])
+    }
+   
+}
+
+extension SearchResultDefaultTableViewCell {
     func configure(with viewModel: SearchResultDefaultTableViewCellViewModel) {
         label.text = viewModel.title
+        actorLbl.text = viewModel.resultType
         guard let url = viewModel.artworkURL else { return }
         
         do {
@@ -69,18 +105,5 @@ class SearchResultDefaultTableViewCell: UITableViewCell {
         }
         
         task = iconImageView.downloadImage(fromURL: url)
-    }
-    
-    
-    private func setImageAutolayout(){
-        iconImageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([iconImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor), iconImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 50), iconImageView.widthAnchor.constraint(equalToConstant: 20), iconImageView.heightAnchor.constraint(equalToConstant: 90)])
-    }
-    
-    private func setLabelAutolayout(){
-        label.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([label.topAnchor.constraint(equalTo: iconImageView.topAnchor, constant: 10),
-                                     label.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 50)])
     }
 }
