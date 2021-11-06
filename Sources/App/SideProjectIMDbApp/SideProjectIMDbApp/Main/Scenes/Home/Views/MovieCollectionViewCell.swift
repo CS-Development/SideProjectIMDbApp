@@ -27,6 +27,8 @@ class MovieCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
+    private var activityView = UIActivityIndicatorView(style: .large)
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .systemBackground
@@ -68,7 +70,22 @@ class MovieCollectionViewCell: UICollectionViewCell {
             }
         } catch {
         }
-        
+        showActivityIndicator()
         task = imageView.downloadImage(fromURL: url)
+        hideActivityIndicator()
     }
+    
+    private func showActivityIndicator(){
+        activityView.startAnimating()
+        activityView.center = self.contentView.center
+        self.contentView.addSubview(activityView)
+    }
+    
+    private func hideActivityIndicator(){
+        activityView.stopAnimating()
+        activityView.center = self.contentView.center
+        self.contentView.addSubview(activityView)
+    }
+    
+    
 }
