@@ -25,6 +25,18 @@ class MovieDetailsViewController: UIViewController, MovieDetailsDelegate {
         return imageView
     }()
     
+    private let label: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .red
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 18, weight: .bold)
+        label.text = "Khalil"
+        label.numberOfLines = 0
+        return label
+    }()
+    
+
+    
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .gray
@@ -70,6 +82,7 @@ class MovieDetailsViewController: UIViewController, MovieDetailsDelegate {
         view.backgroundColor = .systemBackground
     
         view.addSubview(scrollView)
+        scrollView.addSubview(label)
         scrollView.addSubview(imageView)
         scrollView.addSubview(titleLabel)
         scrollView.addSubview(descriptionLabel)
@@ -108,8 +121,8 @@ class MovieDetailsViewController: UIViewController, MovieDetailsDelegate {
         super.viewDidLayoutSubviews()
         
         scrollView.frame = view.bounds
-        
-        imageView.frame = CGRect(x: 0, y: 0, width: scrollView.width, height: scrollView.width)
+        label.frame = CGRect(x: 0, y: 0, width: scrollView.width, height: scrollView.width)
+        imageView.frame = CGRect(x: 0, y: label.bottom + 10, width: scrollView.width, height: scrollView.width)
         titleLabel.frame = CGRect(x: 10, y: imageView.bottom+10, width: scrollView.width-20, height: 44)
         //titleLabel.sizeToFit()
         

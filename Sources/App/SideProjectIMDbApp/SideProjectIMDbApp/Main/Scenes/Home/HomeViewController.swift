@@ -230,4 +230,31 @@ extension HomeViewController {
             return section
         }
     }
+    
+    override func loadView() {
+           super.loadView()
+
+        let baseView = UIView()
+        baseView.backgroundColor = UIColor(red: 13/255, green: 44/255, blue: 75/255, alpha: 1)
+        self.view = baseView
+
+        let progressIcon = UIActivityIndicatorView()
+        progressIcon.translatesAutoresizingMaskIntoConstraints = false
+        progressIcon.style = UIActivityIndicatorView.Style.large
+           view.addSubview(progressIcon)
+           progressIcon.startAnimating()
+
+           var constraints = [NSLayoutConstraint]()
+        constraints.append(NSLayoutConstraint(
+                            item: progressIcon,
+                            attribute: .centerX,
+                            relatedBy: .equal,
+                            toItem: view,
+                            attribute: .centerX,
+                            multiplier: 1,
+                            constant: 0))
+           view.addConstraints(constraints)
+
+       }
+
 }

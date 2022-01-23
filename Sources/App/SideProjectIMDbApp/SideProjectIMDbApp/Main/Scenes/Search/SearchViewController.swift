@@ -47,16 +47,8 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        
-    }
-}
-
-extension SearchViewController: UISearchBarDelegate {
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
         guard let resultsController = searchController.searchResultsController as? SearchResultsViewController,
-              let query = searchBar.text,
+              let query = searchController.searchBar.text,
               !query.trimmingCharacters(in: .whitespaces).isEmpty else {
             return
         }
@@ -68,6 +60,26 @@ extension SearchViewController: UISearchBarDelegate {
                 resultsController.update(with: results)
             }
         }
+    }
+}
+
+extension SearchViewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+//        guard let resultsController = searchController.searchResultsController as? SearchResultsViewController,
+//              let query = searchBar.text,
+//              !query.trimmingCharacters(in: .whitespaces).isEmpty else {
+//            return
+//        }
+//
+//        resultsController.delegate = self
+//
+//        viewModel.searchMovieBy(title: query) { results in
+//            DispatchQueue.main.async {
+//                resultsController.update(with: results)
+//            }
+//        }
     }
 }
 
